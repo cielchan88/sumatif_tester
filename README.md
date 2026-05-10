@@ -106,6 +106,14 @@ rm data/exam.db
 - **Leaderboard**: ranking memakai *best score* per kombinasi siswa+subject (tidak inflated).
 - **Profile**: identifikasi case-insensitive (anggap nama unik dalam keluarga; tanpa login).
 
+## Deploy ke PythonAnywhere (gratis)
+
+Lihat panduan ringkas di komentar `wsgi_pythonanywhere_template.py`. Catatan penting:
+
+- Jangan jalankan dengan `debug=True` di production (sudah dimatikan secara default — hanya aktif kalau env `FLASK_DEBUG=1`).
+- Set env `SUMATIF_SECRET` di file WSGI PythonAnywhere agar session tetap valid setelah restart.
+- File `data/exam.db` persist otomatis di disk PythonAnywhere — tidak perlu volume tambahan.
+
 ## Pengembangan lanjutan
 
 - Tambahkan diagram tren nilai per subject di profile (mis. via Chart.js CDN).
