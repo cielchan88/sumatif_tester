@@ -3,4 +3,5 @@ __pycache__/
 .venv/
 venv/
 data/exam.db
+data/flask_session/
 .DS_Store

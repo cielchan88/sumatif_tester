@@ -13,12 +13,26 @@ from flask import (
     session,
     url_for,
 )
+from flask_session import Session
 
 import models
 import question_loader as ql
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SUMATIF_SECRET", secrets.token_hex(32))
+
+# Server-side sessions: the exam state (30 questions + answers) easily exceeds
+# the 4 KB cookie limit, so we store it on disk and only put a session ID in
+# the cookie.
+SESSION_DIR = os.path.join(os.path.dirname(__file__), "data", "flask_session")
+os.makedirs(SESSION_DIR, exist_ok=True)
+app.config.update(
+    SESSION_TYPE="filesystem",
+    SESSION_FILE_DIR=SESSION_DIR,
+    SESSION_PERMANENT=False,
+    SESSION_USE_SIGNER=True,
+)
+Session(app)
 
 EXAM_SECONDS = 60 * 60  # 60 minutes
 
