@@ -13,7 +13,7 @@ SUBJECTS = [
     {"key": "pancasila", "name": "Pendidikan Pancasila", "lang": "id"},
     {"key": "bahasa_indonesia", "name": "Bahasa Indonesia", "lang": "id"},
     {"key": "bahasa_inggris", "name": "Bahasa Inggris", "lang": "en"},
-    {"key": "matematika", "name": "Matematika", "lang": "id"},
+    {"key": "matematika", "name": "Matematika", "lang": "en"},
     {"key": "ipa", "name": "IPA", "lang": "en"},
     {"key": "ips", "name": "IPS", "lang": "id"},
     {"key": "pjok", "name": "PJOK", "lang": "id"},
