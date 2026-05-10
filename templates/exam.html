@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}{{ subject }} — Ujian{% endblock %}
+{% block content %}
+{% if pool_status == 'cycle_reset' %}
+  <div class="alert alert-success">🎉 Selamat! Kamu sudah melihat semua soal pool {{ subject }}. Memulai siklus baru dengan soal acak.</div>
+{% elif pool_status == 'mixed' %}
+  <div class="alert alert-info">ℹ️ Soal yang belum pernah kamu kerjakan sudah hampir habis — beberapa soal lama akan muncul kembali (yang paling lama tidak dilihat lebih dulu).</div>
+{% elif pool_status == 'short_pool' %}
+  <div class="alert alert-warning">⚠️ Pool soal lebih kecil dari 30. Semua soal yang tersedia akan ditampilkan.</div>
+{% endif %}
+
+<div class="row g-3">
+  <div class="col-lg-9">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div>
+        <span class="badge bg-secondary fs-6">{{ subject }}</span>
+        <span class="ms-2 text-muted">{{ student_name }}</span>
+      </div>
+      <div id="timer" class="timer-box" data-remaining="{{ remaining }}">--:--</div>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <div id="question-area">
+          {% for q in questions %}
+          <div class="question-block" data-idx="{{ loop.index0 }}" data-qid="{{ q.id }}" {% if loop.index0 != current_idx %}style="display:none"{% endif %}>
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <h5 class="mb-0">Soal {{ loop.index }} <span class="text-muted small">/ {{ questions|length }}</span></h5>
+              <button type="button" class="btn btn-sm btn-outline-warning flag-btn" data-qid="{{ q.id }}">
+                {% if flags.get(q.id|string) %}🚩 Ditandai{% else %}🏳️ Tandai{% endif %}
+              </button>
+            </div>
+            <p class="question-text">{{ q.question }}</p>
+            <div class="options">
+              {% for letter, text in q.options.items() %}
+              <label class="option-row">
+                <input type="radio" name="q{{ q.id }}" value="{{ letter }}"
+                       {% if answers.get(q.id|string) == letter %}checked{% endif %}>
+                <span class="option-letter">{{ letter }}</span>
+                <span class="option-text">{{ text }}</span>
+              </label>
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+          <button id="prev-btn" class="btn btn-outline-secondary">← Sebelumnya</button>
+          <button id="clear-btn" class="btn btn-outline-secondary">Kosongkan Jawaban</button>
+          <button id="next-btn" class="btn btn-primary">Selanjutnya →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3">
+    <div class="card shadow-sm sticky-top" style="top:1rem;">
+      <div class="card-body">
+        <h6 class="fw-bold">Daftar Soal</h6>
+        <div class="legend small text-muted mb-2">
+          <span class="legend-dot bg-secondary"></span>Belum
+          <span class="legend-dot bg-primary"></span>Aktif
+          <span class="legend-dot bg-success"></span>Sudah
+          <span class="legend-dot bg-warning"></span>Tandai
+        </div>
+        <div id="qgrid" class="qgrid">
+          {% for q in questions %}
+          <button type="button" class="qcell" data-idx="{{ loop.index0 }}" data-qid="{{ q.id }}">{{ loop.index }}</button>
+          {% endfor %}
+        </div>
+        <button id="submit-btn" class="btn btn-success w-100 mt-3">Selesai</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Submit confirmation modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Selesaikan Ujian?</h5></div>
+      <div class="modal-body">
+        <p>Kamu telah menjawab <strong id="answered-count">0</strong> dari {{ questions|length }} soal.</p>
+        <p class="text-muted small">Jawaban yang sudah kamu pilih akan dinilai. Soal yang dilewati akan dihitung kosong (0).</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Lanjutkan Ujian</button>
+        <form id="submit-form" method="post" action="{{ url_for('submit_exam') }}">
+          <button class="btn btn-success" type="submit">Ya, Selesai</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/exam.js') }}"></script>
+{% endblock %}

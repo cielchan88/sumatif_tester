@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Leaderboard — {{ subject }}{% endblock %}
+{% block content %}
+<h2>🏆 Leaderboard</h2>
+<form class="d-flex gap-2 mb-3" method="get">
+  <select name="subject" class="form-select" onchange="this.form.submit()">
+    {% for s in subjects %}
+      <option value="{{ s.name }}" {% if s.name == subject %}selected{% endif %}>{{ s.name }}</option>
+    {% endfor %}
+  </select>
+</form>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-4"><div class="stat-card bg-primary-subtle"><div class="stat-num">{{ stats.participants or 0 }}</div><div>Peserta</div></div></div>
+  <div class="col-md-4"><div class="stat-card bg-success-subtle"><div class="stat-num">{{ '%.1f'|format(stats.avg_score or 0) }}</div><div>Rata-rata</div></div></div>
+  <div class="col-md-4"><div class="stat-card bg-warning-subtle"><div class="stat-num">{{ stats.total_attempts or 0 }}</div><div>Total Attempt</div></div></div>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h5>Top 10</h5>
+    <table class="table table-striped">
+      <thead><tr><th>#</th><th>Nama</th><th>Nilai Tertinggi</th><th>Attempt</th></tr></thead>
+      <tbody>
+        {% for r in rows %}
+        <tr {% if student_name and r.student_name|lower == student_name|lower %}class="table-warning"{% endif %}>
+          <td>{{ loop.index }}</td>
+          <td>{{ r.student_name }}</td>
+          <td><strong>{{ '%.1f'|format(r.best_score) }}</strong></td>
+          <td>{{ r.attempts_count }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4" class="text-center text-muted">Belum ada data.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% if student_rank %}
+<div class="alert alert-info mt-3">
+  📍 Posisimu di {{ subject }}: <strong>peringkat {{ student_rank[0] }}</strong>
+  dengan nilai tertinggi <strong>{{ '%.1f'|format(student_rank[1].best_score) }}</strong>.
+</div>
+{% endif %}
+{% endblock %}

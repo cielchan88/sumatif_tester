@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Profil — {{ student_name }}{% endblock %}
+{% block content %}
+<h2>👤 {{ student_name }}</h2>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-3"><div class="stat-card bg-primary-subtle"><div class="stat-num">{{ overall.total_attempts }}</div><div>Total Attempt</div></div></div>
+  <div class="col-md-3"><div class="stat-card bg-success-subtle"><div class="stat-num">{{ '%.1f'|format(overall.avg_score or 0) }}</div><div>Rata-rata</div></div></div>
+  <div class="col-md-3"><div class="stat-card bg-info-subtle"><div class="stat-num">{{ best_subject.subject if best_subject else '—' }}</div><div>Mapel Terbaik</div></div></div>
+  <div class="col-md-3"><div class="stat-card bg-warning-subtle"><div class="stat-num">{{ worst_subject.subject if worst_subject else '—' }}</div><div>Perlu Latihan</div></div></div>
+</div>
+
+<div class="card mb-4 shadow-sm">
+  <div class="card-body">
+    <h5>Statistik per Mata Pelajaran</h5>
+    <table class="table">
+      <thead><tr><th>Mata Pelajaran</th><th>Attempt</th><th>Tertinggi</th><th>Terendah</th><th>Rata-rata</th><th>Soal Dipelajari</th></tr></thead>
+      <tbody>
+        {% for s in per_subject %}
+        <tr>
+          <td>{{ s.subject }}</td>
+          <td>{{ s.attempts_count }}</td>
+          <td>{{ '%.1f'|format(s.best_score) }}</td>
+          <td>{{ '%.1f'|format(s.worst_score) }}</td>
+          <td>{{ '%.1f'|format(s.avg_score) }}</td>
+          <td>{{ s.seen_count }}/{{ s.pool_size }}
+            {% if s.pool_size %}<small class="text-muted">({{ (100 * s.seen_count / s.pool_size)|round(0) }}%)</small>{% endif %}
+          </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="6" class="text-center text-muted">Belum ada attempt.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h5>Riwayat Lengkap</h5>
+    <table class="table table-sm">
+      <thead><tr><th>Tanggal</th><th>Mapel</th><th>Nilai</th><th>B/S/Kosong</th><th>Waktu</th><th></th></tr></thead>
+      <tbody>
+        {% for a in attempts %}
+        <tr>
+          <td>{{ a.timestamp|fmtdate }}</td>
+          <td>{{ a.subject }}</td>
+          <td><strong>{{ '%.1f'|format(a.score) }}</strong></td>
+          <td>{{ a.correct_count }}/{{ a.wrong_count }}/{{ a.blank_count }}</td>
+          <td>{{ a.time_used_seconds|fmttime }}</td>
+          <td><a href="{{ url_for('attempt_review', attempt_id=a.id) }}" class="btn btn-sm btn-outline-primary">Detail</a></td>
+        </tr>
+        {% else %}
+        <tr><td colspan="6" class="text-center text-muted">Belum ada attempt.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<a class="btn btn-primary mt-3" href="{{ url_for('landing') }}">Mulai Latihan Baru</a>
+{% endblock %}

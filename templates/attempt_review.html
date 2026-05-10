@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Review Attempt #{{ attempt.id }}{% endblock %}
+{% block content %}
+<a href="{{ url_for('profile', name=attempt.student_name) }}" class="btn btn-link">← Kembali ke Profil</a>
+<h3>Review · {{ attempt.subject }}</h3>
+<p class="text-muted">{{ attempt.student_name }} · {{ attempt.timestamp|fmtdate }} · Nilai <strong>{{ '%.1f'|format(attempt.score) }}</strong></p>
+
+{% for item in items %}
+  {% set q = item.question %}
+  <div class="review-item card mb-2 {% if item.is_correct %}border-success{% elif item.student_answer is none %}border-secondary{% else %}border-danger{% endif %}">
+    <div class="card-body">
+      <div class="d-flex justify-content-between">
+        <strong>Soal {{ loop.index }} · <span class="text-muted">{{ q.topic }}</span></strong>
+        {% if item.is_correct %}<span class="badge bg-success">Benar</span>
+        {% elif item.student_answer is none %}<span class="badge bg-secondary">Kosong</span>
+        {% else %}<span class="badge bg-danger">Salah</span>{% endif %}
+      </div>
+      <p class="mt-2 mb-2">{{ q.question }}</p>
+      <ul class="list-unstyled mb-2">
+        {% for letter, text in q.options.items() %}
+          <li class="{% if letter == q.correct_answer %}text-success fw-semibold{% elif letter == item.student_answer %}text-danger{% endif %}">
+            {{ letter }}. {{ text }}
+            {% if letter == q.correct_answer %} ✅{% endif %}
+            {% if letter == item.student_answer and letter != q.correct_answer %} ← jawabanmu{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="alert alert-light small mb-0"><strong>Penjelasan:</strong> {{ q.explanation }}</div>
+    </div>
+  </div>
+{% endfor %}
+{% endblock %}

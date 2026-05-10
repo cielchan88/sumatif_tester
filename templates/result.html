@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Hasil Ujian — {{ subject }}{% endblock %}
+{% block content %}
+<div class="text-center mb-4">
+  <p class="text-muted mb-1">{{ student_name }} · {{ subject }}</p>
+  <div class="score-big {% if score >= 80 %}text-success{% elif score >= 60 %}text-primary{% else %}text-danger{% endif %}">{{ '%.1f'|format(score) }}</div>
+  <p class="lead">Nilai akhir (skala 0–100)</p>
+</div>
+<div class="row g-3 mb-4">
+  <div class="col-md-3"><div class="stat-card bg-success-subtle"><div class="stat-num">{{ correct }}</div><div>Benar</div></div></div>
+  <div class="col-md-3"><div class="stat-card bg-danger-subtle"><div class="stat-num">{{ wrong }}</div><div>Salah</div></div></div>
+  <div class="col-md-3"><div class="stat-card bg-secondary-subtle"><div class="stat-num">{{ blank }}</div><div>Kosong</div></div></div>
+  <div class="col-md-3"><div class="stat-card bg-info-subtle"><div class="stat-num">{{ time_used|fmttime }}</div><div>Waktu Pengerjaan</div></div></div>
+</div>
+
+{% if by_topic %}
+<div class="card mb-4 shadow-sm">
+  <div class="card-body">
+    <h5>Breakdown per Topik</h5>
+    <div class="row g-2">
+      {% for topic, b in by_topic.items() %}
+      <div class="col-md-6">
+        <div class="d-flex justify-content-between"><span>{{ topic }}</span><strong>{{ b.correct }}/{{ b.total }}</strong></div>
+        <div class="progress" style="height:6px;">
+          <div class="progress-bar {% if b.correct/b.total >= 0.7 %}bg-success{% elif b.correct/b.total >= 0.4 %}bg-warning{% else %}bg-danger{% endif %}"
+               style="width: {{ (100 * b.correct / b.total)|round(0) }}%"></div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<h4>Review Jawaban</h4>
+<p class="text-muted small">Pelajari kembali soal yang dijawab salah atau dilewati.</p>
+{% for item in review %}
+  {% set q = item.question %}
+  <div class="review-item card mb-2 {% if item.is_correct %}border-success{% elif item.student_answer is none %}border-secondary{% else %}border-danger{% endif %}">
+    <div class="card-body">
+      <div class="d-flex justify-content-between">
+        <strong>Soal {{ loop.index }} · <span class="text-muted">{{ q.topic }}</span></strong>
+        {% if item.is_correct %}<span class="badge bg-success">Benar</span>
+        {% elif item.student_answer is none %}<span class="badge bg-secondary">Kosong</span>
+        {% else %}<span class="badge bg-danger">Salah</span>{% endif %}
+      </div>
+      <p class="mt-2 mb-2">{{ q.question }}</p>
+      <ul class="list-unstyled mb-2">
+        {% for letter, text in q.options.items() %}
+          <li class="{% if letter == q.correct_answer %}text-success fw-semibold{% elif letter == item.student_answer %}text-danger{% endif %}">
+            {{ letter }}. {{ text }}
+            {% if letter == q.correct_answer %} ✅{% endif %}
+            {% if letter == item.student_answer and letter != q.correct_answer %} ← jawabanmu{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="alert alert-light small mb-0"><strong>Penjelasan:</strong> {{ q.explanation }}</div>
+    </div>
+  </div>
+{% endfor %}
+
+<div class="d-flex gap-2 mt-4">
+  <a href="{{ url_for('landing') }}" class="btn btn-primary">Latihan Lagi</a>
+  <a href="{{ url_for('leaderboard', subject=subject) }}" class="btn btn-outline-primary">Lihat Leaderboard</a>
+  <a href="{{ url_for('profile') }}" class="btn btn-outline-secondary">Profil Saya</a>
+</div>
+{% endblock %}
