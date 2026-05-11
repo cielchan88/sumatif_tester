@@ -21,7 +21,7 @@ import question_loader as ql
 app = Flask(__name__)
 app.secret_key = os.environ.get("SUMATIF_SECRET", secrets.token_hex(32))
 
-# Server-side sessions: the exam state (30 questions + answers) easily exceeds
+# Server-side sessions: the exam state (40 questions + answers) easily exceeds
 # the 4 KB cookie limit, so we store it on disk and only put a session ID in
 # the cookie.
 SESSION_DIR = os.path.join(os.path.dirname(__file__), "data", "flask_session")
@@ -60,7 +60,7 @@ def start_exam():
     if not name or subject not in ql.SUBJECT_BY_NAME:
         return redirect(url_for("landing"))
 
-    questions, status = ql.sample_questions(name, subject, n=30)
+    questions, status = ql.sample_questions(name, subject, n=40)
     if not questions:
         return redirect(url_for("landing"))
 

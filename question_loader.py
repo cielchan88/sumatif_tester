@@ -73,7 +73,7 @@ def _sample_with_difficulty_ratio(pool, n, target_ratio=(0.4, 0.4, 0.2)):
     return chosen[:n]
 
 
-def sample_questions(student_name, subject_name, n=30):
+def sample_questions(student_name, subject_name, n=40):
     """Anti-repeat sampling.
 
     Returns (questions, status) where status ∈ {"normal", "mixed", "cycle_reset", "short_pool"}.

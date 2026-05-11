@@ -1,6 +1,6 @@
 # Sumatif Tester — Latihan Asesmen Sumatif Kelas 6
 
-Aplikasi web latihan ujian sumatif untuk siswa kelas 6 SD (SD Nabawi Islamic School, TA 2025/2026). 30 soal pilihan ganda per sesi, timer 60 menit, scoring otomatis, leaderboard, profil siswa, dan **anti-repeat** sehingga siswa jarang bertemu soal yang sama berulang.
+Aplikasi web latihan ujian sumatif untuk siswa kelas 6 SD (SD Nabawi Islamic School, TA 2025/2026). 40 soal pilihan ganda per sesi, timer 60 menit, scoring otomatis, leaderboard, profil siswa, dan **anti-repeat** sehingga siswa jarang bertemu soal yang sama berulang.
 
 ## Setup
 
@@ -68,7 +68,7 @@ Setelah mengedit JSON, restart `python app.py` agar perubahan terbaca.
 |---|---|
 | Pendidikan Agama Islam | 130 |
 | Pendidikan Pancasila | 104 |
-| Bahasa Indonesia | 133 |
+| Bahasa Indonesia | 193 |
 | Bahasa Inggris | 112 |
 | Matematika | 104 |
 | IPA (English) | 105 |
