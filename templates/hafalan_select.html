@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{{ category_meta.label }} {{ grade_label }} — Hafalan{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-9">
+    <div class="d-flex align-items-center mb-3 flex-wrap gap-2">
+      <a href="{{ url_for('hafalan_grade', category=category) }}"
+         class="btn btn-sm btn-outline-secondary">← Pilih Grade</a>
+      <h1 class="mb-0">{{ category_meta.icon }} {{ category_meta.label }} — {{ grade_label }}</h1>
+    </div>
+
+    {% if items %}
+    <div class="d-grid mb-4">
+      <a href="{{ url_for('hafalan_random', category=category, grade=grade) }}"
+         class="btn btn-warning btn-lg fw-bold py-3">
+        🎲 Acak — Beri Saya 1 {{ category_meta.label }} Random
+      </a>
+    </div>
+
+    <h2 class="h5 text-muted mb-2">Atau pilih langsung dari daftar:</h2>
+    <div class="list-group">
+      {% for it in items %}
+      <a href="{{ url_for('hafalan_practice', category=category, item_id=it.id) }}"
+         class="list-group-item list-group-item-action d-flex align-items-center">
+        <span class="badge bg-primary me-3" style="min-width:2.5rem;">{{ it.nomor }}</span>
+        <span class="flex-grow-1 fw-semibold">{{ it.judul }}</span>
+        <span class="badge bg-light text-dark">Grade {{ it.grade }}</span>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-warning">Belum ada {{ category_meta.label|lower }} untuk grade ini.</div>
+    {% endif %}
+
+    <p class="text-muted small mt-4">
+      Klik salah satu judul untuk langsung menguji hafalanmu. Teks Arab tidak akan ditampilkan
+      sebelum kamu selesai merekam — ini adalah tes hafalan murni.
+    </p>
+  </div>
+</div>
+{% endblock %}
