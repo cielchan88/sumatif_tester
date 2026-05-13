@@ -1,2 +1,5 @@
 Flask==3.0.3
 Flask-Session==0.8.0
+openai>=1.50
+rapidfuzz>=3.9
+python-dotenv>=1.0

@@ -43,4 +43,38 @@
     </div>
   </div>
 </div>
+
+<hr class="my-5">
+
+<section class="mt-5">
+  <h2 class="text-center mb-2">Latihan Hafalan</h2>
+  <p class="text-center text-muted mb-4">
+    Uji hafalan doa harian dan hadits pendek dengan suaramu sendiri 🎙️
+  </p>
+  <div class="row justify-content-center g-4">
+    <div class="col-md-5">
+      <a href="{{ url_for('hafalan_grade', category='doa') }}" class="text-decoration-none">
+        <div class="card h-100 text-center p-4 hafalan-card">
+          <div class="display-1">🤲</div>
+          <h3 class="mt-3">Doa</h3>
+          <p class="text-muted mb-0">100 Doa Harian — Grade 1–5</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-5">
+      <a href="{{ url_for('hafalan_grade', category='hadits') }}" class="text-decoration-none">
+        <div class="card h-100 text-center p-4 hafalan-card">
+          <div class="display-1">📖</div>
+          <h3 class="mt-3">Hadits</h3>
+          <p class="text-muted mb-0">100 Hadits Pilihan — Grade 1–5</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  {% if session.get('student_name') %}
+  <div class="text-center mt-3">
+    <a href="{{ url_for('hafalan_riwayat') }}" class="small">Lihat Riwayat Hafalan Saya →</a>
+  </div>
+  {% endif %}
+</section>
 {% endblock %}

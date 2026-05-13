@@ -39,6 +39,28 @@ CREATE TABLE IF NOT EXISTS seen_questions (
 CREATE INDEX IF NOT EXISTS idx_attempts_subject ON attempts(subject);
 CREATE INDEX IF NOT EXISTS idx_attempts_student ON attempts(LOWER(student_name));
 CREATE INDEX IF NOT EXISTS idx_seen_student_subject ON seen_questions(LOWER(student_name), subject);
+
+CREATE TABLE IF NOT EXISTS hafalan_attempts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    student_name TEXT NOT NULL,
+    category TEXT NOT NULL,
+    grade INTEGER NOT NULL,
+    item_id TEXT NOT NULL,
+    item_title TEXT NOT NULL,
+    score INTEGER NOT NULL,
+    score_arab INTEGER,
+    score_artinya INTEGER,
+    transcript_arab TEXT,
+    transcript_artinya TEXT,
+    reference_arab TEXT,
+    reference_artinya TEXT,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_hafalan_student
+    ON hafalan_attempts(LOWER(student_name));
+CREATE INDEX IF NOT EXISTS idx_hafalan_category
+    ON hafalan_attempts(category, grade);
 """
 
 
@@ -180,6 +202,60 @@ def attempt_detail(attempt_id):
             (attempt_id,),
         ).fetchall()
     return dict(attempt) if attempt else None, [dict(a) for a in answers]
+
+
+def save_hafalan_attempt(*, student_name, category, grade, item_id, item_title,
+                          score, score_arab=None, score_artinya=None,
+                          transcript_arab=None, transcript_artinya=None,
+                          reference_arab=None, reference_artinya=None):
+    with get_conn() as conn:
+        cur = conn.execute(
+            """INSERT INTO hafalan_attempts
+               (student_name, category, grade, item_id, item_title, score,
+                score_arab, score_artinya, transcript_arab, transcript_artinya,
+                reference_arab, reference_artinya)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            (
+                normalize_name(student_name),
+                category,
+                grade,
+                item_id,
+                item_title,
+                int(score),
+                int(score_arab) if score_arab is not None else None,
+                int(score_artinya) if score_artinya is not None else None,
+                transcript_arab,
+                transcript_artinya,
+                reference_arab,
+                reference_artinya,
+            ),
+        )
+        return cur.lastrowid
+
+
+def get_hafalan_attempt(attempt_id):
+    with get_conn() as conn:
+        row = conn.execute(
+            "SELECT * FROM hafalan_attempts WHERE id = ?", (attempt_id,)
+        ).fetchone()
+    return dict(row) if row else None
+
+
+def hafalan_history(student_name, category=None, limit=100):
+    sql = (
+        "SELECT id, category, grade, item_id, item_title, score, score_arab, "
+        "score_artinya, timestamp FROM hafalan_attempts "
+        "WHERE LOWER(student_name) = ?"
+    )
+    params = [name_key(student_name)]
+    if category:
+        sql += " AND category = ?"
+        params.append(category)
+    sql += " ORDER BY timestamp DESC LIMIT ?"
+    params.append(limit)
+    with get_conn() as conn:
+        rows = conn.execute(sql, tuple(params)).fetchall()
+    return [dict(r) for r in rows]
 
 
 def student_subject_summary(student_name):

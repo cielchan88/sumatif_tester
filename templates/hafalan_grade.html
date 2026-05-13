@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Hafalan {{ category_meta.label }} — Pilih Grade{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div class="d-flex align-items-center mb-3">
+      <a href="{{ url_for('landing') }}" class="btn btn-sm btn-outline-secondary me-2">← Beranda</a>
+      <h1 class="mb-0">{{ category_meta.icon }} Hafalan {{ category_meta.label }}</h1>
+    </div>
+    <p class="text-muted">Pilih grade untuk mulai menguji hafalanmu. 🎙️</p>
+
+    {% if not student_name %}
+    <div class="card mb-4 border-warning">
+      <div class="card-body">
+        <form method="post" action="{{ url_for('hafalan_set_name', category=category) }}" class="row g-2 align-items-end">
+          <div class="col-md-9">
+            <label class="form-label fw-semibold">Nama Siswa</label>
+            <input class="form-control form-control-lg" name="student_name" required minlength="2"
+                   placeholder="Contoh: Ahmad Faruq">
+          </div>
+          <div class="col-md-3">
+            <button class="btn btn-primary btn-lg w-100">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    {% else %}
+    <p class="small text-muted">Siswa: <strong>{{ student_name }}</strong></p>
+    {% endif %}
+
+    <div class="row g-3">
+      {% for g in [1, 2, 3, 4, 5] %}
+      <div class="col-md-4 col-6">
+        <a href="{{ url_for('hafalan_select', category=category, grade=g) }}"
+           class="text-decoration-none">
+          <div class="card h-100 text-center p-3 hafalan-grade-card">
+            <div class="display-3 fw-bold text-primary">{{ g }}</div>
+            <div class="fw-semibold">Grade {{ g }}</div>
+            <small class="text-muted">{{ counts[g] }} {{ category_meta.label_plural|lower }}</small>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+      <div class="col-md-4 col-6">
+        <a href="{{ url_for('hafalan_select', category=category, grade=0) }}"
+           class="text-decoration-none">
+          <div class="card h-100 text-center p-3 hafalan-grade-card bg-light">
+            <div class="display-3">🌟</div>
+            <div class="fw-semibold">Semua Grade</div>
+            <small class="text-muted">{{ counts[0] }} {{ category_meta.label_plural|lower }}</small>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <p class="text-muted small mt-4 text-center">
+      Suara direkam dan diproses oleh layanan transkripsi pihak ketiga (Groq).
+    </p>
+  </div>
+</div>
+{% endblock %}
