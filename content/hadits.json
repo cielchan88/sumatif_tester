@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "hadits_001",
+    "nomor": 1,
+    "grade": 1,
+    "judul": "Hadits Ayo Belajar!",
+    "arab": "طَلَبُ الْعِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ",
+    "artinya": "Menuntut ilmu agama adalah kewajiban bagi setiap muslim.",
+    "sumber": "HR. Ibnu Majah no. 224",
+    "verified": false
+  },
+  {
+    "id": "hadits_002",
+    "nomor": 2,
+    "grade": 1,
+    "judul": "Hadits Langkahkan Kakimu Untuk Menuntut Ilmu",
+    "arab": "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ",
+    "artinya": "Siapa yang menempuh satu jalan untuk menuntut ilmu, Allah akan mudahkan baginya jalan menuju surga.",
+    "sumber": "HR. Muslim no. 2699",
+    "verified": false
+  },
+  {
+    "id": "hadits_003",
+    "nomor": 3,
+    "grade": 1,
+    "judul": "Hadits Siapakah Orang Yang Dicintai Allah?",
+    "arab": "مَنْ يُرِدِ اللَّهُ بِهِ خَيْرًا يُفَقِّهْهُ فِي الدِّينِ",
+    "artinya": "Siapa yang Allah menginginkan kebaikan baginya, maka akan dipahamkan agamanya.",
+    "sumber": "HR. Muslim no. 71 dan HR. Bukhari no. 1037",
+    "verified": false
+  },
+  {
+    "id": "hadits_004",
+    "nomor": 4,
+    "grade": 1,
+    "judul": "Hadits Minta Tolong? Allah Tempatnya!",
+    "arab": "إِذَا سَأَلْتَ فَاسْأَلِ اللَّهَ، وَإِذَا اسْتَعَنْتَ فَاسْتَعِنْ بِاللَّهِ",
+    "artinya": "Jika kamu meminta, mintalah kepada Allah. Jika kamu minta tolong, mintalah tolong juga kepada Allah.",
+    "sumber": "HR. Tirmidzi no. 2516",
+    "verified": false
+  },
+  {
+    "id": "hadits_005",
+    "nomor": 5,
+    "grade": 1,
+    "judul": "Hadits Tauhid Itu Penting!",
+    "arab": "مَنْ مَاتَ وَهُوَ يَعْلَمُ أَنَّهُ لَا إِلَهَ إِلَّا اللَّهُ دَخَلَ الْجَنَّةَ",
+    "artinya": "Siapa yang meninggal dunia, dan dia mengetahui kalimat 'Laa Ilaaha Illallah', dia pasti masuk surga.",
+    "sumber": "HR. Muslim no. 26",
+    "verified": false
+  },
+  {
+    "id": "hadits_006",
+    "nomor": 6,
+    "grade": 1,
+    "judul": "Hadits Jangan Syirik, Yaa!",
+    "arab": "مَنْ مَاتَ لَا يُشْرِكُ بِاللَّهِ شَيْئًا دَخَلَ الْجَنَّةَ",
+    "artinya": "Siapa yang meninggal dunia dan tidak menyekutukan Allah dengan sesuatu apapun, maka ia masuk surga.",
+    "sumber": "HR. Muslim no. 93",
+    "verified": false
+  },
+  {
+    "id": "hadits_007",
+    "nomor": 7,
+    "grade": 1,
+    "judul": "Hadits Sudahkah Kita Mencontoh Nabi?",
+    "arab": "مَنْ أَحْدَثَ فِي أَمْرِنَا هَذَا مَا لَيْسَ مِنْهُ فَهُوَ رَدٌّ",
+    "artinya": "Barangsiapa yang mengada-adakan suatu dalam urusan agama kami ini yang bukan dari kami, dia ditolak.",
+    "sumber": "HR. Muslim no. 1718",
+    "verified": false
+  },
+  {
+    "id": "hadits_008",
+    "nomor": 8,
+    "grade": 1,
+    "judul": "Hadits Wudhu Itu Penting, Lho!",
+    "arab": "لَا تُقْبَلُ صَلَاةُ مَنْ أَحْدَثَ حَتَّى يَتَوَضَّأَ",
+    "artinya": "Tidak akan diterima shalatnya orang yang berhadas hingga dia berwudhu.",
+    "sumber": "HR. Bukhari no. 135 dan Muslim no. 225",
+    "verified": false
+  },
+  {
+    "id": "hadits_009",
+    "nomor": 9,
+    "grade": 1,
+    "judul": "Hadits Wudhu Itu Iman, Lho!",
+    "arab": "الطُّهُورُ شَطْرُ الْإِيمَانِ",
+    "artinya": "Bersuci adalah sebagian dari iman.",
+    "sumber": "HR. Muslim no. 223",
+    "verified": false
+  },
+  {
+    "id": "hadits_010",
+    "nomor": 10,
+    "grade": 1,
+    "judul": "Hadits Bersiwak Itu Sunnah, Lho!",
+    "arab": "السِّوَاكُ مَطْهَرَةٌ لِلْفَمِ مَرْضَاةٌ لِلرَّبِّ",
+    "artinya": "Siwak itu pembersih mulut dan merupakan penyebab keridhaan dari Allah.",
+    "sumber": "HR. An Nasa'i no. 5",
+    "verified": false
+  },
+  {
+    "id": "hadits_011",
+    "nomor": 11,
+    "grade": 1,
+    "judul": "Hadits Sudah Salat Belum?",
+    "arab": "إِنَّ أَوَّلَ مَا يُحَاسَبُ بِهِ الْعَبْدُ يَوْمَ الْقِيَامَةِ مِنْ عَمَلِهِ صَلَاتُهُ",
+    "artinya": "Sesungguhnya amalan hamba yang pertama kali dihisab pada hari kiamat adalah shalat.",
+    "sumber": "HR. Tirmidzi no. 413",
+    "verified": false
+  },
+  {
+    "id": "hadits_012",
+    "nomor": 12,
+    "grade": 1,
+    "judul": "Hadits Apa Rahasia Di Balik Salat Subuh dan Asar?",
+    "arab": "لَنْ يَلِجَ النَّارَ أَحَدٌ صَلَّى قَبْلَ طُلُوعِ الشَّمْسِ وَقَبْلَ غُرُوبِهَا",
+    "artinya": "Tidak akan masuk neraka seseorang yang melakukan shalat sebelum terbitnya matahari (shubuh) dan sebelum terbenamnya (ashar).",
+    "sumber": "HR. Muslim no. 634",
+    "verified": false
+  },
+  {
+    "id": "hadits_013",
+    "nomor": 13,
+    "grade": 1,
+    "judul": "Hadits Keberkahan Di Pagi Hari",
+    "arab": "اَللَّهُمَّ بَارِكْ لِأُمَّتِي فِي بُكُورِهَا",
+    "artinya": "Ya Allah, berkatilah umatku pada waktu pagi.",
+    "sumber": "HR. Ahmad no. 1320",
+    "verified": false
+  },
+  {
+    "id": "hadits_014",
+    "nomor": 14,
+    "grade": 1,
+    "judul": "Hadits Ayo Salat Tepat Waktu!",
+    "arab": "صَلِّ الصَّلَاةَ لِوَقْتِهَا",
+    "artinya": "Kerjakanlah shalat tepat pada waktunya.",
+    "sumber": "HR. Muslim no. 648",
+    "verified": false
+  },
+  {
+    "id": "hadits_015",
+    "nomor": 15,
+    "grade": 1,
+    "judul": "Hadits Yuk, Rajin Salat Berjamaah!",
+    "arab": "صَلَاةُ الْجَمَاعَةِ تَفْضُلُ صَلَاةَ الْفَذِّ بِسَبْعٍ وَعِشْرِينَ دَرَجَةً",
+    "artinya": "Shalat berjama'ah itu lebih utama dua puluh tujuh derajat daripada shalat sendirian.",
+    "sumber": "HR. Muslim no. 650",
+    "verified": false
+  },
+  {
+    "id": "hadits_016",
+    "nomor": 16,
+    "grade": 1,
+    "judul": "Hadits Ayo Pergi Ke Masjid!",
+    "arab": "إِنَّ أَعْظَمَ النَّاسِ أَجْرًا فِي الصَّلَاةِ أَبْعَدُهُمْ إِلَيْهَا مَمْشًى",
+    "artinya": "Sesungguhnya orang yang paling besar pahalanya dalam shalat berjamaah adalah orang yang paling jauh rumahnya dari masjid.",
+    "sumber": "HR. Muslim no. 662",
+    "verified": false
+  },
+  {
+    "id": "hadits_017",
+    "nomor": 17,
+    "grade": 1,
+    "judul": "Hadits Puasalah! Kalian Akan Gembira!",
+    "arab": "لِلصَّائِمِ فَرْحَتَانِ: فَرْحَةٌ عِنْدَ فِطْرِهِ، وَفَرْحَةٌ عِنْدَ لِقَاءِ رَبِّهِ",
+    "artinya": "Orang yang berpuasa mempunyai dua kegembiraan: ia gembira ketika berbuka dan ia gembira ketika bertemu dengan Rabbnya.",
+    "sumber": "HR. Bukhari no. 1904 dan Muslim no. 1151",
+    "verified": false
+  },
+  {
+    "id": "hadits_018",
+    "nomor": 18,
+    "grade": 1,
+    "judul": "Hadits Bau Mulut Saat Puasa?",
+    "arab": "وَالَّذِي نَفْسُ مُحَمَّدٍ بِيَدِهِ لَخُلُوفُ فَمِ الصَّائِمِ أَطْيَبُ عِنْدَ اللَّهِ يَوْمَ الْقِيَامَةِ مِنْ رِيحِ الْمِسْكِ",
+    "artinya": "Dan demi Allah yang jiwa Muhammad ditangan-Nya, sesungguhnya bau mulut orang yang berpuasa itu lebih harum di sisi Allah pada hari kiamat daripada bau kasturi.",
+    "sumber": "HR. Bukhari no. 1904 dan Muslim no. 1151",
+    "verified": false
+  },
+  {
+    "id": "hadits_019",
+    "nomor": 19,
+    "grade": 1,
+    "judul": "Hadits Hari Jum'at Itu Hari Mulia",
+    "arab": "خَيْرُ يَوْمٍ طَلَعَتْ عَلَيْهِ الشَّمْسُ يَوْمُ الْجُمُعَةِ",
+    "artinya": "Sebaik-baik hari di mana matahari terbit di dalamnya adalah hari Jumat.",
+    "sumber": "HR. Muslim no. 854",
+    "verified": false
+  },
+  {
+    "id": "hadits_020",
+    "nomor": 20,
+    "grade": 1,
+    "judul": "Hadits Ayo, Mandi Di Hari Jumat!",
+    "arab": "غُسْلُ يَوْمِ الْجُمُعَةِ وَاجِبٌ عَلَى كُلِّ مُحْتَلِمٍ",
+    "artinya": "Mandi di hari Jum'at itu wajib bagi anak yang baligh.",
+    "sumber": "HR. Bukhari no. 879 dan Muslim no. 846",
+    "verified": false
+  },
+  {
+    "id": "hadits_021",
+    "nomor": 21,
+    "grade": 2,
+    "judul": "Hadits Puasa Di Bulan Ramadan",
+    "arab": "مَنْ صَامَ رَمَضَانَ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ",
+    "artinya": "Barangsiapa yang berpuasa di bulan Ramadhan dalam kondisi keimanan dan mengharap pahala, dia akan diampuni dosa-dosanya yang telah lalu.",
+    "sumber": "HR. Bukhari no. 38 dan Muslim no. 760",
+    "verified": false
+  },
+  {
+    "id": "hadits_022",
+    "nomor": 22,
+    "grade": 2,
+    "judul": "Hadits Ayo Salat Tarawih!",
+    "arab": "مَنْ قَامَ رَمَضَانَ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ",
+    "artinya": "Barangsiapa yang berdiri (menunaikan shalat) di bulan Ramadhan dengan iman dan mengharap pahala, dosa-dosanya yang telah lalu akan diampuni.",
+    "sumber": "HR. Bukhari no. 37 dan Muslim no. 759",
+    "verified": false
+  },
+  {
+    "id": "hadits_023",
+    "nomor": 23,
+    "grade": 2,
+    "judul": "Hadits Sudahkah Kalian Bersedekah?",
+    "arab": "مَا نَقَصَتْ صَدَقَةٌ مِنْ مَالٍ",
+    "artinya": "Sedekah itu tidak mengurangi harta.",
+    "sumber": "HR. Muslim no. 2588",
+    "verified": false
+  },
+  {
+    "id": "hadits_024",
+    "nomor": 24,
+    "grade": 2,
+    "judul": "Hadits Dahsyatnya Sedekah",
+    "arab": "وَالصَّدَقَةُ تُطْفِئُ الْخَطِيئَةَ كَمَا يُطْفِئُ الْمَاءُ النَّارَ",
+    "artinya": "Sedekah itu akan menghapuskan dosa sebagaimana air dapat memadamkan api.",
+    "sumber": "HR. Ahmad no. 15284",
+    "verified": false
+  },
+  {
+    "id": "hadits_025",
+    "nomor": 25,
+    "grade": 2,
+    "judul": "Hadits Separuh Kurma? Bisa Untuk Apa?",
+    "arab": "اِتَّقُوا النَّارَ وَلَوْ بِشِقِّ تَمْرَةٍ، فَمَنْ لَمْ يَجِدْ فَبِكَلِمَةٍ طَيِّبَةٍ",
+    "artinya": "Jauhilah neraka dengan bersedekah walaupun dengan separuh kurma. Jika kalian tidak mendapatkannya, bersedekahlah dengan kalimat yang baik.",
+    "sumber": "HR. Muslim no. 1016",
+    "verified": false
+  },
+  {
+    "id": "hadits_026",
+    "nomor": 26,
+    "grade": 2,
+    "judul": "Hadits Larangan Meminta-minta",
+    "arab": "الْيَدُ الْعُلْيَا خَيْرٌ مِنَ الْيَدِ السُّفْلَى",
+    "artinya": "Tangan yang di atas itu lebih baik daripada tangan yang di bawah.",
+    "sumber": "HR. Bukhari no. 1429 dan Muslim no. 1033",
+    "verified": false
+  },
+  {
+    "id": "hadits_027",
+    "nomor": 27,
+    "grade": 2,
+    "judul": "Hadits Haji Itu Ibadah Yang Sangat Mulia",
+    "arab": "اَلْحَجُّ الْمَبْرُورُ لَيْسَ لَهُ جَزَاءٌ إِلَّا الْجَنَّةُ",
+    "artinya": "Haji mabrur itu tidak ada balasan yang pantas baginya selain surga.",
+    "sumber": "HR. Bukhari no. 1773 dan Muslim no. 1349",
+    "verified": false
+  },
+  {
+    "id": "hadits_028",
+    "nomor": 28,
+    "grade": 2,
+    "judul": "Hadits Haji Itu Menghapus Dosa",
+    "arab": "مَنْ حَجَّ لِلَّهِ فَلَمْ يَرْفُثْ وَلَمْ يَفْسُقْ رَجَعَ كَيَوْمِ وَلَدَتْهُ أُمُّهُ",
+    "artinya": "Siapa yang berhaji karena Allah, lalu tidak berkata-kata kotor dan tidak berbuat kefasikan, berarti ia kembali suci seperti ketika dilahirkan oleh ibunya.",
+    "sumber": "HR. Bukhari no. 1521",
+    "verified": false
+  },
+  {
+    "id": "hadits_029",
+    "nomor": 29,
+    "grade": 2,
+    "judul": "Hadits Anak Saleh Itu Berbakti Kepada Orang Tua",
+    "arab": "رِضَا الرَّبِّ فِي رِضَا الْوَالِدِ، وَسَخَطُ الرَّبِّ فِي سَخَطِ الْوَالِدِ",
+    "artinya": "Ridha Allah tergantung kepada keridahaan orang tua dan murka Allah tergantung pada kemurkaan orang tua.",
+    "sumber": "HR. Hakim no. 7249",
+    "verified": false
+  },
+  {
+    "id": "hadits_030",
+    "nomor": 30,
+    "grade": 2,
+    "judul": "Hadits Sudahkah Kita Berbakti Kepada Orang Tua?",
+    "arab": "الْوَالِدُ أَوْسَطُ أَبْوَابِ الْجَنَّةِ، فَإِنْ شِئْتَ فَأَضِعْ ذَلِكَ الْبَابَ أَوِ احْفَظْهُ",
+    "artinya": "Ayah adalah pintu surga paling tengah. Maka, sia-siakanlah atau jagalah pintu tersebut.",
+    "sumber": "HR. Ibnu Majah no. 3663",
+    "verified": false
+  },
+  {
+    "id": "hadits_031",
+    "nomor": 31,
+    "grade": 2,
+    "judul": "Hadits Jangan Durhaka Kepada Ibu!",
+    "arab": "إِنَّ اللَّهَ تَعَالَى حَرَّمَ عَلَيْكُمْ عُقُوقَ الْأُمَّهَاتِ",
+    "artinya": "Sungguh Allah ta'ala mengharamkan kalian durhaka kepada ibu.",
+    "sumber": "HR. Bukhari no. 2408",
+    "verified": false
+  },
+  {
+    "id": "hadits_032",
+    "nomor": 32,
+    "grade": 2,
+    "judul": "Hadits Bahaya Memutuskan Silaturahmi",
+    "arab": "لَا يَدْخُلُ الْجَنَّةَ قَاطِعٌ",
+    "artinya": "Tidak masuk surga orang yang memutuskan tali (silaturrahmi).",
+    "sumber": "HR. Bukhari no. 5984 dan Muslim no. 2556",
+    "verified": false
+  },
+  {
+    "id": "hadits_033",
+    "nomor": 33,
+    "grade": 2,
+    "judul": "Hadits Saling Memberi Hadiah",
+    "arab": "تَهَادَوْا تَحَابُّوا",
+    "artinya": "Hendaknya kalian saling memberi hadiah, niscaya kalian akan saling menyayangi.",
+    "sumber": "HR. Bukhari no. 594",
+    "verified": false
+  },
+  {
+    "id": "hadits_034",
+    "nomor": 34,
+    "grade": 2,
+    "judul": "Hadits Wah, Ada Hadiah",
+    "arab": "كَانَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقْبَلُ الْهَدِيَّةَ وَيُثِيبُ عَلَيْهَا",
+    "artinya": "Adalah Rasulullah shallallahu 'alaihi wa sallam menerima hadiah dan membalasnya.",
+    "sumber": "HR. Bukhari no. 2585",
+    "verified": false
+  },
+  {
+    "id": "hadits_035",
+    "nomor": 35,
+    "grade": 2,
+    "judul": "Hadits Tinggalkan Yang Tidak Bermanfaat",
+    "arab": "مِنْ حُسْنِ إِسْلَامِ الْمَرْءِ تَرْكُهُ مَا لَا يَعْنِيهِ",
+    "artinya": "Di antara tanda baiknya keislaman seseorang adalah meninggalkan apa yang tidak bermanfaat baginya.",
+    "sumber": "HR. Tirmidzi no. 2317, Ibnu Majah no. 3976",
+    "verified": false
+  },
+  {
+    "id": "hadits_036",
+    "nomor": 36,
+    "grade": 2,
+    "judul": "Hadits Sempurnanya Iman Kita",
+    "arab": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",
+    "artinya": "Tidak sempurna iman seseorang hingga dia mencintai saudaranya sebagaimana dia mencintai dirinya sendiri.",
+    "sumber": "HR. Bukhari no. 13 dan Muslim no. 45",
+    "verified": false
+  },
+  {
+    "id": "hadits_037",
+    "nomor": 37,
+    "grade": 2,
+    "judul": "Hadits Yuk, Kita Berbicara Yang Baik!",
+    "arab": "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ",
+    "artinya": "Siapa yang beriman kepada Allah dan Hari Akhir, hendaknya berkata yang baik atau diam.",
+    "sumber": "HR. Bukhari no. 6475 dan Muslim no. 47",
+    "verified": false
+  },
+  {
+    "id": "hadits_038",
+    "nomor": 38,
+    "grade": 2,
+    "judul": "Hadits Jujur Itu Super!",
+    "arab": "عَلَيْكُمْ بِالصِّدْقِ، فَإِنَّ الصِّدْقَ يَهْدِي إِلَى الْبِرِّ، وَإِنَّ الْبِرَّ يَهْدِي إِلَى الْجَنَّةِ",
+    "artinya": "Hendaklah kalian berlaku jujur, karena kejujuran membawa kepada kebaikan, dan kebaikan mengantarkan seseorang ke Surga.",
+    "sumber": "HR. Muslim no. 2607 dan Tirmidzi no. 1971",
+    "verified": false
+  },
+  {
+    "id": "hadits_039",
+    "nomor": 39,
+    "grade": 2,
+    "judul": "Hadits Senyum Itu Sedekah, Lho!",
+    "arab": "تَبَسُّمُكَ فِي وَجْهِ أَخِيكَ صَدَقَةٌ",
+    "artinya": "Senyummu di hadapan saudaramu adalah sedekah.",
+    "sumber": "HR. Tirmidzi no. 1956",
+    "verified": false
+  },
+  {
+    "id": "hadits_040",
+    "nomor": 40,
+    "grade": 2,
+    "judul": "Hadits Yuk, Tebarkan Salam!",
+    "arab": "أَفْشُوا السَّلَامَ بَيْنَكُمْ",
+    "artinya": "Sebarkanlah salam diantara kalian.",
+    "sumber": "HR. Muslim no. 54 dan Abu Dawud no. 5193",
+    "verified": false
+  },
+  {
+    "id": "hadits_041",
+    "nomor": 41,
+    "grade": 3,
+    "judul": "Hadits Jagalah Lisanmu!",
+    "arab": "أَكْثَرُ خَطَايَا ابْنِ آدَمَ فِي لِسَانِهِ",
+    "artinya": "Kebanyakan dosa anak Adam (manusia) itu pada lisannya.",
+    "sumber": "HR. At Thabrani no. 10446",
+    "verified": false
+  },
+  {
+    "id": "hadits_042",
+    "nomor": 42,
+    "grade": 3,
+    "judul": "Hadits Sudahkah Kalian Memuliakan Tetangga?",
+    "arab": "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيُكْرِمْ جَارَهُ",
+    "artinya": "Siapa yang beriman kepada Allah dan Hari Akhir hendaknya memuliakan tetangganya.",
+    "sumber": "HR. Bukhari no. 6019 dan Muslim no. 16374",
+    "verified": false
+  },
+  {
+    "id": "hadits_043",
+    "nomor": 43,
+    "grade": 3,
+    "judul": "Hadits Suka Mengganggu Tetangga? Pikir Dua Kali, Deh!",
+    "arab": "لَا يَدْخُلُ الْجَنَّةَ مَنْ لَا يَأْمَنُ جَارُهُ بَوَائِقَهُ",
+    "artinya": "Tidak masuk surga orang yang tetangganya tidak merasa aman dari gangguannya.",
+    "sumber": "HR. Muslim no. 46",
+    "verified": false
+  },
+  {
+    "id": "hadits_044",
+    "nomor": 44,
+    "grade": 3,
+    "judul": "Hadits Sudahkah Kalian Memuliakan Tamu?",
+    "arab": "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيُكْرِمْ ضَيْفَهُ",
+    "artinya": "Siapa yang beriman kepada Allah dan Hari Akhir maka hendaknya ia memuliakan tamunya.",
+    "sumber": "HR. Bukhari no. 6135 dan Muslim no. 48",
+    "verified": false
+  },
+  {
+    "id": "hadits_045",
+    "nomor": 45,
+    "grade": 3,
+    "judul": "Hadits Perbuatan Baik Menghapus Keburukan",
+    "arab": "وَأَتْبِعِ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا",
+    "artinya": "Ikutilah perbuatan buruk dengan perbuatan baik, niscaya itu menghapus perbuatan buruk.",
+    "sumber": "HR. Tirmidzi no. 1987 dan Ahmad no. 21352",
+    "verified": false
+  },
+  {
+    "id": "hadits_046",
+    "nomor": 46,
+    "grade": 3,
+    "judul": "Hadits Bagaimana Cara Bergaul?",
+    "arab": "وَخَالِقِ النَّاسَ بِخُلُقٍ حَسَنٍ",
+    "artinya": "Bergaullah dengan orang lain dengan akhlak yang bagus.",
+    "sumber": "HR. Tirmidzi no. 1987 dan Ahmad no. 21352",
+    "verified": false
+  },
+  {
+    "id": "hadits_047",
+    "nomor": 47,
+    "grade": 3,
+    "judul": "Hadits Jauhi Prasangka Buruk!",
+    "arab": "إِيَّاكُمْ وَالظَّنَّ، فَإِنَّ الظَّنَّ أَكْذَبُ الْحَدِيثِ",
+    "artinya": "Jauhilah buruk sangka olehmu sekalian, karena buruk sangka adalah sedusta-dustanya perkataan.",
+    "sumber": "HR. Bukhari no. 6064 dan Muslim no. 2563",
+    "verified": false
+  },
+  {
+    "id": "hadits_048",
+    "nomor": 48,
+    "grade": 3,
+    "judul": "Hadits Siapakah Manusia Terbaik?",
+    "arab": "خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ",
+    "artinya": "Sebaik-baik kalian adalah orang yang mempelajari dan mengajarkan Al Qur'an.",
+    "sumber": "HR. Bukhari no. 5027 dan Tirmidzi no. 2909",
+    "verified": false
+  },
+  {
+    "id": "hadits_049",
+    "nomor": 49,
+    "grade": 3,
+    "judul": "Hadits Ingin Mendapat Syafaat Al Qur'an?",
+    "arab": "اِقْرَءُوا الْقُرْآنَ، فَإِنَّهُ يَأْتِي يَوْمَ الْقِيَامَةِ شَفِيعًا لِأَصْحَابِهِ",
+    "artinya": "Bacalah Al Qur'an. Sesungguhnya ia datang pada hari kiamat untuk memberi syafaat kepada pembacanya.",
+    "sumber": "HR. Muslim no. 804 dan Ahmad no. 5 & 225",
+    "verified": false
+  },
+  {
+    "id": "hadits_050",
+    "nomor": 50,
+    "grade": 3,
+    "judul": "Hadits Ih, Ada Kuburan Di Rumah!",
+    "arab": "لَا تَجْعَلُوا بُيُوتَكُمْ مَقَابِرَ، إِنَّ الشَّيْطَانَ يَنْفِرُ مِنَ الْبَيْتِ الَّذِي تُقْرَأُ فِيهِ سُورَةُ الْبَقَرَةِ",
+    "artinya": "Janganlah kalian menjadikan rumah-rumah kalian sebagai kuburan. Sesungguhnya setan itu akan lari dari rumah yang di dalamnya dibacakan surah Al Baqarah.",
+    "sumber": "HR. Muslim no. 780",
+    "verified": false
+  },
+  {
+    "id": "hadits_051",
+    "nomor": 51,
+    "grade": 3,
+    "judul": "Hadits Jadilah Orang Yang Pintar Al Qur'an",
+    "arab": "الْمَاهِرُ بِالْقُرْآنِ مَعَ السَّفَرَةِ الْكِرَامِ الْبَرَرَةِ",
+    "artinya": "Seorang yang fasih (mahir) dalam membaca Al Qur'an akan bersama dengan para malaikat yang mulia dan berbakti.",
+    "sumber": "HR. Muslim no. 798",
+    "verified": false
+  },
+  {
+    "id": "hadits_052",
+    "nomor": 52,
+    "grade": 3,
+    "judul": "Hadits Jagalah Hafalan Al Qur'an Kalian!",
+    "arab": "تَعَاهَدُوا الْقُرْآنَ، فَوَالَّذِي نَفْسِي بِيَدِهِ لَهُوَ أَشَدُّ تَفَلُّتًا مِنَ الْإِبِلِ فِي عُقُلِهَا",
+    "artinya": "Jagalah Al Qur'an, demi Zat yang jiwaku berada di tangan-Nya. Sesungguhnya Al Qur'an itu sangat mudah lepas daripada seekor unta yang berada dalam ikatannya.",
+    "sumber": "HR. Bukhari no. 5033",
+    "verified": false
+  },
+  {
+    "id": "hadits_053",
+    "nomor": 53,
+    "grade": 3,
+    "judul": "Hadits Doa Itu Ibadah Lho, Sobat!",
+    "arab": "إِنَّ الدُّعَاءَ هُوَ الْعِبَادَةُ",
+    "artinya": "Sesungguhnya doa itu ibadah.",
+    "sumber": "HR. Ibnu Majah no. 3828 dan Ahmad no. 18352",
+    "verified": false
+  },
+  {
+    "id": "hadits_054",
+    "nomor": 54,
+    "grade": 3,
+    "judul": "Hadits Kemuliaan Doa",
+    "arab": "لَيْسَ شَيْءٌ أَكْرَمَ عَلَى اللَّهِ تَعَالَى مِنَ الدُّعَاءِ",
+    "artinya": "Tidak ada yang lebih mulia atas Allah azza wa jalla selain doa.",
+    "sumber": "HR. Bukhari no. 712",
+    "verified": false
+  },
+  {
+    "id": "hadits_055",
+    "nomor": 55,
+    "grade": 3,
+    "judul": "Hadits Ingin Doa Kalian Dikabulkan?",
+    "arab": "الدُّعَاءُ بَيْنَ الْأَذَانِ وَالْإِقَامَةِ لَا يُرَدُّ",
+    "artinya": "Doa antara azan dan iqamah itu tidak akan ditolak.",
+    "sumber": "HR. Muslim no. 662",
+    "verified": false
+  },
+  {
+    "id": "hadits_056",
+    "nomor": 56,
+    "grade": 3,
+    "judul": "Hadits Malu dan Iman",
+    "arab": "الْحَيَاءُ مِنَ الْإِيمَانِ",
+    "artinya": "Rasa malu itu sebagian dari iman.",
+    "sumber": "HR. An Nasa'i no. 5006",
+    "verified": false
+  },
+  {
+    "id": "hadits_057",
+    "nomor": 57,
+    "grade": 3,
+    "judul": "Hadits Malu Itu Menyelamatkan Kita",
+    "arab": "إِذَا لَمْ تَسْتَحْيِ فَاصْنَعْ مَا شِئْتَ",
+    "artinya": "Jika engkau tidak malu, perbuatlah apa yang engkau suka.",
+    "sumber": "HR. Bukhari no. 3484",
+    "verified": false
+  },
+  {
+    "id": "hadits_058",
+    "nomor": 58,
+    "grade": 3,
+    "judul": "Hadits Tolonglah Temanmu!",
+    "arab": "مَنْ يَسَّرَ عَلَى مُعْسِرٍ يَسَّرَ اللَّهُ عَلَيْهِ فِي الدُّنْيَا وَالْآخِرَةِ",
+    "artinya": "Siapa yang memudahkan kesulitan seseorang di dunia, Allah akan memudahkan urusannya di dunia dan akhirat.",
+    "sumber": "HR. Muslim no. 2699 dan Abu Dawud no. 4946",
+    "verified": false
+  },
+  {
+    "id": "hadits_059",
+    "nomor": 59,
+    "grade": 3,
+    "judul": "Hadits Ingin Mendapatkan Pertolongan Allah?",
+    "arab": "وَاللَّهُ فِي عَوْنِ الْعَبْدِ مَا كَانَ الْعَبْدُ فِي عَوْنِ أَخِيهِ",
+    "artinya": "Allah senantiasa membantu seorang hamba, selama hamba tersebut membantu saudaranya.",
+    "sumber": "HR. Muslim no. 2699 dan Abu Dawud no. 4946",
+    "verified": false
+  },
+  {
+    "id": "hadits_060",
+    "nomor": 60,
+    "grade": 3,
+    "judul": "Hadits Ayo, Kita Sebarkan Kebaikan!",
+    "arab": "مَنْ دَلَّ عَلَى خَيْرٍ فَلَهُ مِثْلُ أَجْرِ فَاعِلِهِ",
+    "artinya": "Siapa yang menunjukkan kebaikan, ia mendapat pahala seperti pelakunya.",
+    "sumber": "HR. Muslim no. 1893 dan Ahmad no. 17084",
+    "verified": false
+  },
+  {
+    "id": "hadits_061",
+    "nomor": 61,
+    "grade": 4,
+    "judul": "Hadits Inilah Zikir Yang Besar Pahalanya",
+    "arab": "كَلِمَتَانِ خَفِيفَتَانِ عَلَى اللِّسَانِ، ثَقِيلَتَانِ فِي الْمِيزَانِ، حَبِيبَتَانِ إِلَى الرَّحْمَنِ: سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ",
+    "artinya": "Dua kalimat yang ringan dalam lisan, tetapi berat dalam timbangan, dan disukai oleh Ar Rahman (Allah): Subhanallahi wabihamdihi Subhanallahil 'azhim.",
+    "sumber": "HR. Bukhari no. 6406 dan Muslim no. 2694",
+    "verified": false
+  },
+  {
+    "id": "hadits_062",
+    "nomor": 62,
+    "grade": 4,
+    "judul": "Hadits Zikir Itu Sedekah",
+    "arab": "وَالْكَلِمَةُ الطَّيِّبَةُ صَدَقَةٌ",
+    "artinya": "Kalimat Thayyibah itu adalah sedekah.",
+    "sumber": "HR. Muslim no. 2699",
+    "verified": false
+  },
+  {
+    "id": "hadits_063",
+    "nomor": 63,
+    "grade": 4,
+    "judul": "Hadits Shalawat Kepada Rasulullah",
+    "arab": "مَنْ صَلَّى عَلَيَّ صَلَاةً وَاحِدَةً، صَلَّى اللَّهُ عَلَيْهِ بِهَا عَشْرًا، وَحُطَّتْ عَنْهُ بِهَا عَشْرُ خَطِيئَاتٍ",
+    "artinya": "Siapa yang mengucapkan shalawat kepadaku sebanyak satu kali, Allah akan bershalawat baginya sepuluh kali dan digugurkan sepuluh kesalahan (dosa)nya.",
+    "sumber": "HR. An Nasa'i no. 1297",
+    "verified": false
+  },
+  {
+    "id": "hadits_064",
+    "nomor": 64,
+    "grade": 4,
+    "judul": "Hadits Apa Kita Termasuk Orang Yang Pelit?",
+    "arab": "الْبَخِيلُ مَنْ ذُكِرْتُ عِنْدَهُ فَلَمْ يُصَلِّ عَلَيَّ",
+    "artinya": "Orang yang Bakhil (Pelit) adalah orang yang ketika namaku disebut tetapi dia tidak bershalawat kepadaku.",
+    "sumber": "HR. Tirmidzi no. 3546",
+    "verified": false
+  },
+  {
+    "id": "hadits_065",
+    "nomor": 65,
+    "grade": 4,
+    "judul": "Hadits Kalian Mau Disayang? Sayangilah Orang Lain!",
+    "arab": "مَنْ لَا يَرْحَمُ النَّاسَ لَا يَرْحَمْهُ اللَّهُ",
+    "artinya": "Siapa yang tidak menyayangi orang lain maka dia tidak akan disayangi.",
+    "sumber": "HR. Bukhari no. 5997 dan Abu Dawud no. 5218",
+    "verified": false
+  },
+  {
+    "id": "hadits_066",
+    "nomor": 66,
+    "grade": 4,
+    "judul": "Hadits Orang Beriman Itu Saling Menguatkan",
+    "arab": "الْمُؤْمِنُ لِلْمُؤْمِنِ كَالْبُنْيَانِ يَشُدُّ بَعْضُهُ بَعْضًا",
+    "artinya": "Seorang mukmin dengan mukmin lainnya seperti bangunan yang saling menguatkan.",
+    "sumber": "HR. Bukhari no. 2446 dan Muslim no. 2585",
+    "verified": false
+  },
+  {
+    "id": "hadits_067",
+    "nomor": 67,
+    "grade": 4,
+    "judul": "Hadits Kebaikan Yang Kecil?",
+    "arab": "لَا تَحْقِرَنَّ مِنَ الْمَعْرُوفِ شَيْئًا",
+    "artinya": "Janganlah kamu meremehkan kebaikan sedikitpun.",
+    "sumber": "HR. Muslim no. 2626",
+    "verified": false
+  },
+  {
+    "id": "hadits_068",
+    "nomor": 68,
+    "grade": 4,
+    "judul": "Hadits Tidak Berterima Kasih Itu Berarti Tidak Bersyukur, Lho!",
+    "arab": "لَا يَشْكُرُ اللَّهَ مَنْ لَا يَشْكُرُ النَّاسَ",
+    "artinya": "Tidak bersyukur kepada Allah apabila seseorang tidak berterima kasih kepada manusia.",
+    "sumber": "HR. Abu Dawud no. 4811",
+    "verified": false
+  },
+  {
+    "id": "hadits_069",
+    "nomor": 69,
+    "grade": 4,
+    "judul": "Hadits Jangan Marah!",
+    "arab": "لَا تَغْضَبْ",
+    "artinya": "Jangan Marah.",
+    "sumber": "HR. Bukhari no. 6116 dan Tirmidzi no. 2020",
+    "verified": false
+  },
+  {
+    "id": "hadits_070",
+    "nomor": 70,
+    "grade": 4,
+    "judul": "Hadits Tinggalkan Segala Sesuatu Yang Berbahaya!",
+    "arab": "لَا ضَرَرَ وَلَا ضِرَارَ",
+    "artinya": "Tidak boleh melakukan perbuatan (mudharat) yang mencelakakan diri sendiri dan orang lain.",
+    "sumber": "HR. Ibnu Majah no. 2340",
+    "verified": false
+  },
+  {
+    "id": "hadits_071",
+    "nomor": 71,
+    "grade": 4,
+    "judul": "Hadits Hati-hati Lho, Malaikat Menjauhi Rumah Ini!",
+    "arab": "لَا تَدْخُلُ الْمَلَائِكَةُ بَيْتًا فِيهِ كَلْبٌ وَلَا صُورَةٌ",
+    "artinya": "Malaikat tidak akan memasuki suatu rumah yang di dalamnya ada anjing dan gambar makhluk hidup.",
+    "sumber": "HR. Bukhari no. 3225",
+    "verified": false
+  },
+  {
+    "id": "hadits_072",
+    "nomor": 72,
+    "grade": 4,
+    "judul": "Hadits Jangan Usir Temanmu!",
+    "arab": "لَا يُقِيمُ الرَّجُلُ الرَّجُلَ مِنْ مَجْلِسِهِ، ثُمَّ يَجْلِسُ فِيهِ",
+    "artinya": "Janganlah seseorang dari kalian menyuruh saudaranya berdiri dari tempat duduknya, kemudian ia duduk di tempat itu.",
+    "sumber": "HR. Tirmidzi no. 2750",
+    "verified": false
+  },
+  {
+    "id": "hadits_073",
+    "nomor": 73,
+    "grade": 4,
+    "judul": "Hadits Tinggikan Celana Kalian!",
+    "arab": "مَنْ جَرَّ ثَوْبَهُ خُيَلَاءَ لَمْ يَنْظُرِ اللَّهُ إِلَيْهِ يَوْمَ الْقِيَامَةِ",
+    "artinya": "Orang yang menjulurkan kainnya karena sombong, dia tidak akan dilihat oleh Allah pada hari kiamat kelak.",
+    "sumber": "HR. Bukhari no. 3665 dan Muslim no. 2085",
+    "verified": false
+  },
+  {
+    "id": "hadits_074",
+    "nomor": 74,
+    "grade": 4,
+    "judul": "Hadits Sesama Muslim Itu Bersaudara, Lho!",
+    "arab": "الْمُسْلِمُ أَخُو الْمُسْلِمِ",
+    "artinya": "Muslim itu saudara bagi muslim lainnya.",
+    "sumber": "HR. Muslim no. 1564",
+    "verified": false
+  },
+  {
+    "id": "hadits_075",
+    "nomor": 75,
+    "grade": 4,
+    "judul": "Hadits Bagaimana Kehidupan Sehari-hari Rasulullah?",
+    "arab": "كَانَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَكُونُ فِي مِهْنَةِ أَهْلِهِ، فَإِذَا سَمِعَ الْأَذَانَ خَرَجَ",
+    "artinya": "Nabi shallallahu 'alaihi wa sallam biasa membantu pekerjaan istrinya. Dan jika beliau mendengar azan, beliau segera keluar (untuk pergi menuju masjid).",
+    "sumber": "HR. Bukhari no. 5363 dan Tirmidzi no. 2489",
+    "verified": false
+  },
+  {
+    "id": "hadits_076",
+    "nomor": 76,
+    "grade": 4,
+    "judul": "Hadits Siapakah Orang Yang Paling Mulia?",
+    "arab": "قِيلَ يَا رَسُولَ اللَّهِ مَنْ أَكْرَمُ النَّاسِ؟ قَالَ: أَتْقَاهُمْ",
+    "artinya": "Dikatakan kepada Rasulullah: 'Wahai Rasulullah, siapakah orang paling mulia?' Rasulullah menjawab: Orang yang paling bertakwa.",
+    "sumber": "HR. Bukhari no. 3353 dan Muslim no. 2378",
+    "verified": false
+  },
+  {
+    "id": "hadits_077",
+    "nomor": 77,
+    "grade": 4,
+    "judul": "Hadits Jangan Suka Mengadu Domba!",
+    "arab": "لَا يَدْخُلُ الْجَنَّةَ نَمَّامٌ",
+    "artinya": "Tidak akan masuk surga bagi orang yang suka mengadu domba.",
+    "sumber": "HR. Muslim no. 105",
+    "verified": false
+  },
+  {
+    "id": "hadits_078",
+    "nomor": 78,
+    "grade": 4,
+    "judul": "Hadits Jangan Menyakiti Orang Mukmin, Ya!",
+    "arab": "سِبَابُ الْمُسْلِمِ فُسُوقٌ، وَقِتَالُهُ كُفْرٌ",
+    "artinya": "Mencaci muslim adalah perbuatan fasik dan membunuhnya adalah tindakan kufur.",
+    "sumber": "HR. Bukhari no. 48 dan Muslim no. 64",
+    "verified": false
+  },
+  {
+    "id": "hadits_079",
+    "nomor": 79,
+    "grade": 4,
+    "judul": "Hadits Tobat Membersihkan Dosa",
+    "arab": "التَّائِبُ مِنَ الذَّنْبِ كَمَنْ لَا ذَنْبَ لَهُ",
+    "artinya": "Siapa bertobat dari dosanya, dia seperti orang tak berdosa.",
+    "sumber": "HR. Ath Thabrani no. 10281",
+    "verified": false
+  },
+  {
+    "id": "hadits_080",
+    "nomor": 80,
+    "grade": 4,
+    "judul": "Hadits Memberi Makan dan Mengucapkan Salam",
+    "arab": "تُطْعِمُ الطَّعَامَ، وَتَقْرَأُ السَّلَامَ عَلَى مَنْ عَرَفْتَ وَمَنْ لَمْ تَعْرِفْ",
+    "artinya": "Kamu memberi makan, mengucapkan salam kepada orang yang kamu kenal dan yang tidak kamu kenal.",
+    "sumber": "HR. Bukhari no. 38 dan Muslim no. 760",
+    "verified": false
+  },
+  {
+    "id": "hadits_081",
+    "nomor": 81,
+    "grade": 5,
+    "judul": "Hadits Yuk, Istiqamah!",
+    "arab": "أَحَبُّ الْأَعْمَالِ إِلَى اللَّهِ أَدْوَمُهَا وَإِنْ قَلَّ",
+    "artinya": "Amalan yang paling dicintai Allah adalah amalan yang paling berkekalan (istiqamah di dalamnya), walaupun sedikit.",
+    "sumber": "HR. Bukhari no. 6464 dan 2818",
+    "verified": false
+  },
+  {
+    "id": "hadits_082",
+    "nomor": 82,
+    "grade": 5,
+    "judul": "Hadits Mau Mendapatkan Banyak Pahala?",
+    "arab": "أَطْعِمُوا الْجَائِعَ، وَعُودُوا الْمَرِيضَ",
+    "artinya": "Berilah makan orang yang kelaparan, jenguklah orang sakit.",
+    "sumber": "HR. Bukhari no. 5649 dan Abu Dawud no. 3105",
+    "verified": false
+  },
+  {
+    "id": "hadits_083",
+    "nomor": 83,
+    "grade": 5,
+    "judul": "Hadits Raihlah Cita-citamu!",
+    "arab": "اِحْرِصْ عَلَى مَا يَنْفَعُكَ، وَاسْتَعِنْ بِاللَّهِ وَلَا تَعْجَزْ",
+    "artinya": "Bersungguh-sungguhlah untuk mendapatkan apa yang bermanfaat bagimu, dan mintalah pertolongan kepada Allah (dalam segala urusanmu), serta janganlah sekali-kali engkau merasa lemah.",
+    "sumber": "HR. Muslim no. 2664",
+    "verified": false
+  },
+  {
+    "id": "hadits_084",
+    "nomor": 84,
+    "grade": 5,
+    "judul": "Hadits Mencela Makanan? Jangan Deh!",
+    "arab": "مَا عَابَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ طَعَامًا قَطُّ",
+    "artinya": "Nabi shallallahu 'alaihi wa sallam sekali-kali tidak pernah mencela makanan.",
+    "sumber": "HR. Bukhari no. 3563 dan Muslim no. 2046",
+    "verified": false
+  },
+  {
+    "id": "hadits_085",
+    "nomor": 85,
+    "grade": 5,
+    "judul": "Hadits Makanlah Sesuai Petunjuk Rasululllah!",
+    "arab": "يَا غُلَامُ، سَمِّ اللَّهَ، وَكُلْ بِيَمِينِكَ، وَكُلْ مِمَّا يَلِيكَ",
+    "artinya": "Wahai anak kecil, bacalah basmalah, dan makanlah dengan tangan kananmu dan ambillah yang terdekat darimu.",
+    "sumber": "HR. Bukhari no. 5376 dan Muslim no. 2022",
+    "verified": false
+  },
+  {
+    "id": "hadits_086",
+    "nomor": 86,
+    "grade": 5,
+    "judul": "Hadits Bolehkah Minum Sambil Berdiri?",
+    "arab": "لَا يَشْرَبَنَّ أَحَدٌ مِنْكُمْ قَائِمًا",
+    "artinya": "Sungguh janganlah salah seorang dari kamu minum sambil berdiri.",
+    "sumber": "HR. Muslim no. 2026",
+    "verified": false
+  },
+  {
+    "id": "hadits_087",
+    "nomor": 87,
+    "grade": 5,
+    "judul": "Hadits Jangan Kasar, Yaa!",
+    "arab": "إِنَّ اللَّهَ رَفِيقٌ يُحِبُّ الرِّفْقَ",
+    "artinya": "Sesungguhnya Allah itu lembut dan menyukai kelembutan.",
+    "sumber": "HR. Bukhari no. 6927 dan Muslim no. 2593",
+    "verified": false
+  },
+  {
+    "id": "hadits_088",
+    "nomor": 88,
+    "grade": 5,
+    "judul": "Hadits Jadilah Mukmin Yang Kuat!",
+    "arab": "الْمُؤْمِنُ الْقَوِيُّ خَيْرٌ وَأَحَبُّ إِلَى اللَّهِ مِنَ الْمُؤْمِنِ الضَّعِيفِ",
+    "artinya": "Orang mukmin yang kuat lebih baik dan lebih disenangi Allah daripada orang mukmin yang lemah.",
+    "sumber": "HR. Muslim no. 2664",
+    "verified": false
+  },
+  {
+    "id": "hadits_089",
+    "nomor": 89,
+    "grade": 5,
+    "judul": "Hadits Kebaikan Itu Sedekah",
+    "arab": "كُلُّ مَعْرُوفٍ صَدَقَةٌ",
+    "artinya": "Setiap kebaikan adalah sedekah.",
+    "sumber": "HR. Bukhari no. 6021 dan Muslim no. 1005",
+    "verified": false
+  },
+  {
+    "id": "hadits_090",
+    "nomor": 90,
+    "grade": 5,
+    "judul": "Hadits Cintailah Orang-orang Saleh!",
+    "arab": "الْمَرْءُ مَعَ مَنْ أَحَبَّ",
+    "artinya": "Seseorang akan bersama siapa yang dicintainya.",
+    "sumber": "HR. Bukhari no. 6168 & 6169 dan Muslim no. 2640",
+    "verified": false
+  },
+  {
+    "id": "hadits_091",
+    "nomor": 91,
+    "grade": 5,
+    "judul": "Hadits Tempat Apa Yang Paling Dicintai Allah?",
+    "arab": "أَحَبُّ الْبِلَادِ إِلَى اللَّهِ مَسَاجِدُهَا",
+    "artinya": "Tempat yang paling dicintai Allah di muka bumi adalah masjid-masjidnya.",
+    "sumber": "HR. Tirmidzi no. 671",
+    "verified": false
+  },
+  {
+    "id": "hadits_092",
+    "nomor": 92,
+    "grade": 5,
+    "judul": "Hadits Tempat Yang Paling Dibenci Allah?",
+    "arab": "وَأَبْغَضُ الْبِلَادِ إِلَى اللَّهِ أَسْوَاقُهَا",
+    "artinya": "Tempat yang paling dibenci Allah di muka bumi adalah pasar-pasarnya.",
+    "sumber": "HR. Muslim no. 671",
+    "verified": false
+  },
+  {
+    "id": "hadits_093",
+    "nomor": 93,
+    "grade": 5,
+    "judul": "Hadits Maukah Kalian Dijaga Allah?",
+    "arab": "اِحْفَظِ اللَّهَ يَحْفَظْكَ",
+    "artinya": "Jagalah Allah, niscaya Dia akan menjaga kamu.",
+    "sumber": "HR. Tirmidzi no. 2516",
+    "verified": false
+  },
+  {
+    "id": "hadits_094",
+    "nomor": 94,
+    "grade": 5,
+    "judul": "Hadits Siapakah Muslim Sejati?",
+    "arab": "الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ",
+    "artinya": "Muslim sejati adalah orang yang selamat muslim lainnya dari keburukan lisannya dan kejahatan tangannya.",
+    "sumber": "HR. Bukhari no. 6484 dan Muslim no. 41",
+    "verified": false
+  },
+  {
+    "id": "hadits_095",
+    "nomor": 95,
+    "grade": 5,
+    "judul": "Hadits Tidur Sehabis Subuh? Jangan Deh!",
+    "arab": "نَوْمُ الصُّبْحَةِ يَمْنَعُ الرِّزْقَ",
+    "artinya": "Tidur di waktu pagi menjadi penghalang rezeki.",
+    "sumber": "HR. Ahmad no. 530",
+    "verified": false
+  },
+  {
+    "id": "hadits_096",
+    "nomor": 96,
+    "grade": 5,
+    "judul": "Hadits Apakah Kita Termasuk Orang Yang Sombong?",
+    "arab": "الْكِبْرُ بَطَرُ الْحَقِّ، وَغَمْطُ النَّاسِ",
+    "artinya": "Sombong itu tidak menerima kebenaran dan menghina sesama muslim.",
+    "sumber": "HR. Muslim no. 91",
+    "verified": false
+  },
+  {
+    "id": "hadits_097",
+    "nomor": 97,
+    "grade": 5,
+    "judul": "Hadits Dahulukan Yang Kanan, Yaa!",
+    "arab": "كَانَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يُحِبُّ التَّيَمُّنَ فِي تَنَعُّلِهِ وَتَرَجُّلِهِ وَطُهُورِهِ، وَفِي شَأْنِهِ كُلِّهِ",
+    "artinya": "Rasulullah shallallahu 'alaihi wa sallam sangat menyukai mendahulukan yang kanan ketika memakai sendal, ketika menyisir rambut dan ketika bersuci, juga dalam setiap perkara (yang baik-baik).",
+    "sumber": "HR. Bukhari no. 186 dan Muslim no. 268",
+    "verified": false
+  },
+  {
+    "id": "hadits_098",
+    "nomor": 98,
+    "grade": 5,
+    "judul": "Hadits Berbisik Yang Dilarang",
+    "arab": "إِذَا كُنْتُمْ ثَلَاثَةً فَلَا يَتَنَاجَى اثْنَانِ دُونَ الْآخَرِ، فَإِنَّ ذَلِكَ يُحْزِنُهُ",
+    "artinya": "Jika kalian bertiga, janganlah yang dua orang berbisik tanpa melibatkan yang ketiga, sebab yang demikian itu membuatnya sedih.",
+    "sumber": "HR. Muslim no. 2184",
+    "verified": false
+  },
+  {
+    "id": "hadits_099",
+    "nomor": 99,
+    "grade": 5,
+    "judul": "Hadits Islam Itu Mudah, Lho!",
+    "arab": "إِنَّ الدِّينَ يُسْرٌ",
+    "artinya": "Sesungguhnya agama ini mudah.",
+    "sumber": "HR. Bukhari no. 39",
+    "verified": false
+  },
+  {
+    "id": "hadits_100",
+    "nomor": 100,
+    "grade": 5,
+    "judul": "Hadits Hanya Yang Baik Yang Diterima",
+    "arab": "إِنَّ اللَّهَ طَيِّبٌ لَا يَقْبَلُ إِلَّا طَيِّبًا",
+    "artinya": "Sesungguhnya Allah itu baik dan tidak menerima sesuatu kecuali yang baik.",
+    "sumber": "HR. Muslim no. 1015",
+    "verified": false
+  }
+]

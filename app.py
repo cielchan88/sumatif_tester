@@ -7,6 +7,7 @@ from datetime import datetime
 from flask import (
     Flask,
     abort,
+    jsonify,
     redirect,
     render_template,
     request,
@@ -15,8 +16,10 @@ from flask import (
 )
 from flask_session import Session
 
+import hafalan_loader as hl
 import models
 import question_loader as ql
+import scorer
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SUMATIF_SECRET", secrets.token_hex(32))
@@ -287,6 +290,233 @@ def attempt_review(attempt_id):
         "attempt_review.html",
         attempt=attempt,
         items=items,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Hafalan (Doa & Hadits) module
+# ---------------------------------------------------------------------------
+
+GRADE_LABELS = {1: "Grade 1", 2: "Grade 2", 3: "Grade 3", 4: "Grade 4", 5: "Grade 5"}
+
+
+def _require_category(category):
+    if category not in hl.CATEGORIES:
+        abort(404)
+    return hl.CATEGORIES[category]
+
+
+@app.route("/hafalan/<category>")
+def hafalan_grade(category):
+    meta = _require_category(category)
+    counts = hl.grade_counts(category)
+    return render_template(
+        "hafalan_grade.html",
+        category=category,
+        category_meta=meta,
+        counts=counts,
+        student_name=session.get("student_name", ""),
+    )
+
+
+@app.route("/hafalan/<category>/set_name", methods=["POST"])
+def hafalan_set_name(category):
+    _require_category(category)
+    name = (request.form.get("student_name") or "").strip()
+    if name:
+        session["student_name"] = name
+        session.modified = True
+    return redirect(request.referrer or url_for("hafalan_grade", category=category))
+
+
+@app.route("/hafalan/<category>/grade/<int:grade>")
+def hafalan_select(category, grade):
+    meta = _require_category(category)
+    if grade not in (0, 1, 2, 3, 4, 5):
+        abort(404)
+    items = hl.items_by_grade(category, grade)
+    return render_template(
+        "hafalan_select.html",
+        category=category,
+        category_meta=meta,
+        grade=grade,
+        grade_label="Semua Grade" if grade == 0 else GRADE_LABELS[grade],
+        items=items,
+        student_name=session.get("student_name", ""),
+    )
+
+
+@app.route("/hafalan/<category>/random")
+def hafalan_random(category):
+    _require_category(category)
+    try:
+        grade = int(request.args.get("grade", 0))
+    except (TypeError, ValueError):
+        grade = 0
+    item = hl.random_item(category, grade)
+    if not item:
+        return redirect(url_for("hafalan_grade", category=category))
+    return redirect(url_for("hafalan_practice", category=category, item_id=item["id"]))
+
+
+@app.route("/hafalan/<category>/item/<item_id>")
+def hafalan_practice(category, item_id):
+    meta = _require_category(category)
+    item = hl.find_item(category, item_id)
+    if not item:
+        abort(404)
+    if not session.get("student_name"):
+        return redirect(url_for("hafalan_grade", category=category))
+    template = (
+        "hafalan_doa_practice.html"
+        if category == "doa"
+        else "hafalan_hadits_practice.html"
+    )
+    return render_template(
+        template,
+        category=category,
+        category_meta=meta,
+        item=item,
+        student_name=session["student_name"],
+    )
+
+
+def _read_audio(field):
+    f = request.files.get(field)
+    if not f:
+        return None
+    data = f.read()
+    return data if data else None
+
+
+@app.route("/hafalan/doa/<item_id>/submit", methods=["POST"])
+def hafalan_doa_submit(item_id):
+    item = hl.find_item("doa", item_id)
+    if not item:
+        return jsonify({"ok": False, "error": "Doa tidak ditemukan."}), 404
+    student_name = session.get("student_name")
+    if not student_name:
+        return jsonify({"ok": False, "error": "Nama siswa belum diisi."}), 400
+    audio = _read_audio("audio")
+    if not audio:
+        return jsonify({"ok": False, "error": "Audio tidak terkirim."}), 400
+
+    try:
+        import transcriber
+        transcript = transcriber.transcribe(audio, language="ar")
+    except Exception as e:
+        return jsonify({
+            "ok": False,
+            "error": "Gagal memproses suara. Coba lagi ya.",
+            "detail": str(e),
+        }), 502
+
+    result = scorer.score_doa(item["arab"], transcript)
+    attempt_id = models.save_hafalan_attempt(
+        student_name=student_name,
+        category="doa",
+        grade=item["grade"],
+        item_id=item["id"],
+        item_title=item["judul"],
+        score=result["score"],
+        transcript_arab=transcript,
+        reference_arab=item["arab"],
+    )
+    return jsonify({
+        "ok": True,
+        "result_url": url_for("hafalan_result", attempt_id=attempt_id),
+    })
+
+
+@app.route("/hafalan/hadits/<item_id>/submit", methods=["POST"])
+def hafalan_hadits_submit(item_id):
+    item = hl.find_item("hadits", item_id)
+    if not item:
+        return jsonify({"ok": False, "error": "Hadits tidak ditemukan."}), 404
+    student_name = session.get("student_name")
+    if not student_name:
+        return jsonify({"ok": False, "error": "Nama siswa belum diisi."}), 400
+    audio_arab = _read_audio("audio_arab")
+    audio_artinya = _read_audio("audio_artinya")
+    if not audio_arab or not audio_artinya:
+        return jsonify({"ok": False, "error": "Audio belum lengkap."}), 400
+
+    try:
+        import transcriber
+        hyp_arab = transcriber.transcribe(audio_arab, language="ar",
+                                           filename="arab.webm")
+        hyp_artinya = transcriber.transcribe(audio_artinya, language="id",
+                                              filename="artinya.webm")
+    except Exception as e:
+        return jsonify({
+            "ok": False,
+            "error": "Gagal memproses suara. Coba lagi ya.",
+            "detail": str(e),
+        }), 502
+
+    result = scorer.score_hadits(
+        item["arab"], item["artinya"], hyp_arab, hyp_artinya
+    )
+    attempt_id = models.save_hafalan_attempt(
+        student_name=student_name,
+        category="hadits",
+        grade=item["grade"],
+        item_id=item["id"],
+        item_title=item["judul"],
+        score=result["score"],
+        score_arab=result["score_arab"],
+        score_artinya=result["score_artinya"],
+        transcript_arab=hyp_arab,
+        transcript_artinya=hyp_artinya,
+        reference_arab=item["arab"],
+        reference_artinya=item["artinya"],
+    )
+    return jsonify({
+        "ok": True,
+        "result_url": url_for("hafalan_result", attempt_id=attempt_id),
+    })
+
+
+@app.route("/hafalan/result/<int:attempt_id>")
+def hafalan_result(attempt_id):
+    attempt = models.get_hafalan_attempt(attempt_id)
+    if not attempt:
+        abort(404)
+    item = hl.find_item(attempt["category"], attempt["item_id"])
+    feedback = scorer.feedback_for(attempt["score"])
+    tip = ""
+    if attempt["category"] == "hadits":
+        tip = scorer.hadits_tip(
+            attempt.get("score_arab") or 0,
+            attempt.get("score_artinya") or 0,
+        )
+    return render_template(
+        "hafalan_result.html",
+        attempt=attempt,
+        item=item,
+        category=attempt["category"],
+        category_meta=hl.CATEGORIES.get(attempt["category"], {}),
+        feedback=feedback,
+        tip=tip,
+        student_name=session.get("student_name", attempt["student_name"]),
+    )
+
+
+@app.route("/hafalan/riwayat")
+def hafalan_riwayat():
+    name = (request.args.get("name") or session.get("student_name") or "").strip()
+    if not name:
+        return redirect(url_for("landing"))
+    category = request.args.get("category") or None
+    if category and category not in hl.CATEGORIES:
+        category = None
+    history = models.hafalan_history(name, category=category)
+    return render_template(
+        "hafalan_riwayat.html",
+        student_name=name,
+        history=history,
+        category=category,
+        categories=hl.CATEGORIES,
     )
 
 

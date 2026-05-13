@@ -114,8 +114,98 @@ Lihat panduan ringkas di komentar `wsgi_pythonanywhere_template.py`. Catatan pen
 - Set env `SUMATIF_SECRET` di file WSGI PythonAnywhere agar session tetap valid setelah restart.
 - File `data/exam.db` persist otomatis di disk PythonAnywhere — tidak perlu volume tambahan.
 
+## Modul Hafalan Doa & Hadits
+
+Modul tambahan untuk **menguji hafalan** siswa terhadap 100 doa harian dan 100 hadits pilihan
+(Grade 1–5). Berbeda dari modul sumatif, modul ini memakai **rekaman suara siswa** yang
+ditranskripsi otomatis menggunakan Groq Whisper, lalu dibandingkan terhadap teks referensi.
+
+**Filosofi tes hafalan murni**: di halaman praktik, **hanya nomor + judul** doa/hadits yang
+ditampilkan. Teks Arab (dan artinya untuk hadits) sengaja **tidak ditampilkan** agar siswa
+benar-benar menghafal dari memori. Teks lengkap baru muncul di halaman hasil sebagai feedback
+edukatif.
+
+### Mode pengujian
+
+| Kategori | Tahapan rekam | Skor |
+|---|---|---|
+| Doa | 1 rekaman (bacaan Arab) | 0–100 |
+| Hadits | 2 rekaman (Arab → artinya) | Skor Arab + Skor Artinya + Skor Akhir (60% Arab + 40% artinya) |
+
+Ambang skor: ≥85 Sangat Baik · 70–84 Baik · 50–69 Cukup · <50 Perlu Latihan.
+
+### Routes
+
+| Route | Fungsi |
+|---|---|
+| `/hafalan/<category>` | Pilih grade (1–5 atau Semua) |
+| `/hafalan/<category>/grade/<n>` | Daftar item + tombol Acak |
+| `/hafalan/<category>/random?grade=<g>` | Acak 1 item |
+| `/hafalan/<category>/item/<id>` | Halaman praktik (rekam suara) |
+| `/hafalan/doa/<id>/submit` | Submit audio Arab (multipart) |
+| `/hafalan/hadits/<id>/submit` | Submit dua audio (Arab + artinya) |
+| `/hafalan/result/<attempt_id>` | Hasil + feedback |
+| `/hafalan/riwayat` | Riwayat hafalan siswa |
+
+### Konten (`content/doa.json` & `content/hadits.json`)
+
+Saat ini SEMUA entry ditandai `"verified": false` karena PDF silabus sulit di-OCR dengan urutan
+RTL yang benar. Teks Arab diisi dari versi standar kurikulum SD Islam Indonesia. **Perlu di-review
+manual** sebelum dianggap final. Format:
+
+```json
+// doa.json
+{ "id": "doa_001", "nomor": 1, "grade": 1, "judul": "...", "arab": "...", "verified": false }
+
+// hadits.json
+{ "id": "hadits_001", "nomor": 1, "grade": 1, "judul": "...",
+  "arab": "...", "artinya": "...", "sumber": "HR. ...", "verified": false }
+```
+
+### Setup tambahan (lokal)
+
+```bash
+pip install -r requirements.txt
+cp .env.example .env
+# Edit .env, isi GROQ_API_KEY = gsk_...
+python app.py
+```
+
+Catatan dev lokal: `getUserMedia` (perekaman mic browser) hanya jalan di HTTPS atau di
+`localhost`. Jangan gunakan IP LAN saat dev tanpa HTTPS.
+
+### Deploy ke PythonAnywhere
+
+1. Push branch ke GitHub repo yang sudah connected ke PA.
+2. Di Bash console PA:
+   ```bash
+   cd ~/<folder-app>
+   git pull
+   workon <virtualenv>
+   pip install -r requirements.txt
+   ```
+3. Web tab → **Environment variables**:
+   - `GROQ_API_KEY = gsk_...`
+4. **Whitelist check** (free tier PA hanya bisa hit domain whitelisted):
+   ```bash
+   curl -I https://api.groq.com
+   ```
+   - Kalau berhasil → lanjut Reload web app.
+   - Kalau ditolak → request whitelist `api.groq.com` ke `forums@pythonanywhere.com`,
+     atau upgrade ke Hacker plan ($5/bulan), atau fallback ke OpenAI Whisper API
+     (sudah whitelisted; ganti `base_url` ke `https://api.openai.com/v1` di `transcriber.py`
+     dan model ke `whisper-1`).
+5. Reload web app.
+
+### Privasi
+
+Audio yang direkam siswa **dikirim ke server Groq** untuk transkripsi. Disclaimer kecil
+sudah ditampilkan di footer halaman hafalan.
+
 ## Pengembangan lanjutan
 
 - Tambahkan diagram tren nilai per subject di profile (mis. via Chart.js CDN).
 - Tambahkan ekspor PDF hasil attempt.
 - Tambahkan import/export JSON untuk soal dari spreadsheet.
+- Verifikasi manual semua teks Arab di `content/doa.json` & `content/hadits.json`, lalu ubah
+  `"verified": true`.

@@ -5,3 +5,4 @@ venv/
 data/exam.db
 data/flask_session/
 .DS_Store
+.env

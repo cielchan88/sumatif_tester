@@ -56,3 +56,41 @@ main { min-height: 70vh; }
 .stat-num { font-size: 1.6rem; font-weight: 700; }
 
 .review-item .card-body { padding: 1rem; }
+
+/* ---------------- Hafalan module ---------------- */
+.hafalan-card {
+  border: 2px solid #dee2e6; border-radius: 0.8rem; background: #fff;
+  transition: all .15s ease; color: #212529;
+}
+.hafalan-card:hover { border-color: #0d6efd; transform: translateY(-4px); box-shadow: 0 6px 18px rgba(13,110,253,.15); }
+
+.hafalan-grade-card {
+  border: 2px solid #dee2e6; border-radius: 0.8rem; background: #fff;
+  transition: all .15s ease; color: #212529; min-height: 130px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.hafalan-grade-card:hover { border-color: #0d6efd; background: #eaf2ff; }
+
+.hafalan-practice-card { border-radius: 1rem; }
+
+.record-btn {
+  min-height: 72px; min-width: 220px; font-size: 1.3rem;
+  border-radius: 999px; padding: 0.6rem 1.6rem; box-shadow: 0 4px 12px rgba(0,0,0,.1);
+}
+
+.hafalan-stage h2 { font-size: 1.35rem; }
+
+.arabic-text {
+  font-family: "Traditional Arabic", "Scheherazade New", "Amiri", "Geeza Pro", "Arial", serif;
+  font-size: 2rem; line-height: 2; text-align: right;
+}
+.arabic-text-hyp {
+  font-family: "Traditional Arabic", "Scheherazade New", "Amiri", "Geeza Pro", "Arial", serif;
+  font-size: 1.5rem; line-height: 1.9; text-align: right; color: #6c757d;
+  background: #f8f9fa; border-radius: 0.5rem; padding: 0.6rem 1rem;
+}
+
+@media (max-width: 576px) {
+  .record-btn { min-width: 180px; font-size: 1.1rem; }
+  .arabic-text { font-size: 1.6rem; }
+}

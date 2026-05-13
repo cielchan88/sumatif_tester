@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Hasil Hafalan — {{ attempt.item_title }}{% endblock %}
+{% block content %}
+{% set is_doa = attempt.category == 'doa' %}
+{% set score_color = feedback.color %}
+<div class="row justify-content-center">
+  <div class="col-lg-9">
+
+    <div class="text-center mb-4">
+      <div class="text-uppercase small text-muted">
+        {{ category_meta.icon }} {{ category_meta.label }} #{{ attempt.item_id.split('_')[-1] }} · Grade {{ attempt.grade }}
+      </div>
+      <h1 class="fw-bold">{{ attempt.item_title }}</h1>
+      {% if item and item.sumber %}
+      <p class="text-muted small mb-0">{{ item.sumber }}</p>
+      {% endif %}
+    </div>
+
+    <div class="card shadow-sm mb-4 border-{{ score_color }}">
+      <div class="card-body text-center p-4">
+        <div class="display-1 fw-bold text-{{ score_color }}">{{ attempt.score }}</div>
+        <div class="fs-5 mb-2">
+          <strong>{{ feedback.level }}</strong> {{ feedback.stars }}
+        </div>
+        <p class="lead mb-3">{{ feedback.message }}</p>
+        <div class="progress" style="height: 12px;">
+          <div class="progress-bar bg-{{ score_color }}" role="progressbar"
+               style="width: {{ attempt.score }}%;"
+               aria-valuenow="{{ attempt.score }}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        {% if not is_doa %}
+        <div class="row g-3 mt-4 text-center">
+          <div class="col-6">
+            <div class="border rounded p-3">
+              <div class="text-muted small">Skor Bacaan Arab</div>
+              <div class="fs-3 fw-bold">{{ attempt.score_arab or 0 }}</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="border rounded p-3">
+              <div class="text-muted small">Skor Artinya</div>
+              <div class="fs-3 fw-bold">{{ attempt.score_artinya or 0 }}</div>
+            </div>
+          </div>
+        </div>
+        {% if tip %}
+        <div class="alert alert-info mt-3 mb-0 small">{{ tip }}</div>
+        {% endif %}
+        {% endif %}
+      </div>
+    </div>
+
+    <h2 class="h5 mt-4 mb-2">📖 Teks Referensi (untuk feedback edukatif)</h2>
+
+    <div class="card mb-3">
+      <div class="card-body">
+        <h3 class="h6 text-muted">Teks Arab</h3>
+        <div class="arabic-text mb-3" dir="rtl" lang="ar">{{ attempt.reference_arab }}</div>
+        <hr>
+        <h3 class="h6 text-muted">Hasil Transkripsi Suaramu</h3>
+        <div class="arabic-text-hyp" dir="rtl" lang="ar">{{ attempt.transcript_arab or '(kosong)' }}</div>
+      </div>
+    </div>
+
+    {% if not is_doa %}
+    <div class="card mb-3">
+      <div class="card-body">
+        <h3 class="h6 text-muted">Artinya</h3>
+        <p class="fs-5 mb-3">{{ attempt.reference_artinya }}</p>
+        <hr>
+        <h3 class="h6 text-muted">Hasil Transkripsi Suaramu</h3>
+        <p class="fs-6 text-muted mb-0">{{ attempt.transcript_artinya or '(kosong)' }}</p>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="d-flex flex-wrap gap-2 mt-4">
+      <a class="btn btn-primary"
+         href="{{ url_for('hafalan_practice', category=attempt.category, item_id=attempt.item_id) }}">
+        🔁 Coba Lagi
+      </a>
+      <a class="btn btn-warning"
+         href="{{ url_for('hafalan_random', category=attempt.category, grade=attempt.grade) }}">
+        🎲 Acak Baru (Grade {{ attempt.grade }})
+      </a>
+      <a class="btn btn-outline-secondary"
+         href="{{ url_for('hafalan_select', category=attempt.category, grade=attempt.grade) }}">
+        Daftar {{ category_meta.label }}
+      </a>
+      <a class="btn btn-outline-secondary ms-auto"
+         href="{{ url_for('landing') }}">
+        ⬅️ Beranda
+      </a>
+    </div>
+
+    <p class="text-muted small mt-3">
+      💡 Skor dihitung otomatis dari kemiripan teks transkripsi dengan teks referensi.
+      Mungkin terdapat kesalahan transkripsi; jika kamu yakin bacaanmu benar, mintalah
+      gurumu untuk konfirmasi ya.
+    </p>
+  </div>
+</div>
+{% endblock %}
