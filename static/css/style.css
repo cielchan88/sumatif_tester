@@ -90,7 +90,15 @@ main { min-height: 70vh; }
   background: #f8f9fa; border-radius: 0.5rem; padding: 0.6rem 1rem;
 }
 
+.hafalan-nav .btn {
+  display: flex; flex-direction: column; justify-content: center;
+  white-space: normal; line-height: 1.25;
+}
+.hafalan-nav .btn .text-truncate { max-width: 100%; }
+
 @media (max-width: 576px) {
   .record-btn { min-width: 180px; font-size: 1.1rem; }
   .arabic-text { font-size: 1.6rem; }
+  .hafalan-nav .btn .small { font-size: 0.75rem; }
+  .hafalan-nav .btn .fw-semibold { font-size: 0.9rem; }
 }
