@@ -73,3 +73,25 @@ def grade_counts(category: str):
             counts[g] += 1
     counts[0] = sum(counts.values())
     return counts
+
+
+def neighbors(category: str, grade: int, item_id: str):
+    """Return (prev_item, next_item, position, total) within the given grade.
+
+    Wraps around at boundaries so navigation is always available. Ordered by
+    `nomor` so it follows the silabus sequence.
+    """
+    items = sorted(
+        items_by_grade(category, grade),
+        key=lambda it: it.get("nomor", 0),
+    )
+    if not items:
+        return None, None, 0, 0
+    ids = [it["id"] for it in items]
+    try:
+        idx = ids.index(item_id)
+    except ValueError:
+        return None, None, 0, len(items)
+    prev_item = items[(idx - 1) % len(items)] if len(items) > 1 else None
+    next_item = items[(idx + 1) % len(items)] if len(items) > 1 else None
+    return prev_item, next_item, idx + 1, len(items)

@@ -490,6 +490,9 @@ def hafalan_result(attempt_id):
             attempt.get("score_arab") or 0,
             attempt.get("score_artinya") or 0,
         )
+    prev_item, next_item, position, total = hl.neighbors(
+        attempt["category"], attempt["grade"], attempt["item_id"]
+    )
     return render_template(
         "hafalan_result.html",
         attempt=attempt,
@@ -499,6 +502,10 @@ def hafalan_result(attempt_id):
         feedback=feedback,
         tip=tip,
         student_name=session.get("student_name", attempt["student_name"]),
+        prev_item=prev_item,
+        next_item=next_item,
+        position=position,
+        total=total,
     )
 
 

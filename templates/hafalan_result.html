@@ -75,8 +75,38 @@
     </div>
     {% endif %}
 
-    <div class="d-flex flex-wrap gap-2 mt-4">
-      <a class="btn btn-primary"
+    {% if prev_item or next_item %}
+    <div class="row g-2 mt-4 align-items-stretch hafalan-nav">
+      <div class="col-6 col-md-4">
+        {% if prev_item %}
+        <a class="btn btn-outline-primary w-100 h-100 text-start py-3"
+           href="{{ url_for('hafalan_practice', category=attempt.category, item_id=prev_item.id) }}">
+          <div class="small text-muted">← Sebelumnya</div>
+          <div class="fw-semibold text-truncate">#{{ prev_item.nomor }} · {{ prev_item.judul }}</div>
+        </a>
+        {% endif %}
+      </div>
+      <div class="col-12 col-md-4 text-center align-self-center">
+        {% if total > 1 %}
+        <span class="badge bg-light text-dark">
+          {{ category_meta.label }} {{ position }} dari {{ total }} di Grade {{ attempt.grade }}
+        </span>
+        {% endif %}
+      </div>
+      <div class="col-6 col-md-4">
+        {% if next_item %}
+        <a class="btn btn-primary w-100 h-100 text-end py-3"
+           href="{{ url_for('hafalan_practice', category=attempt.category, item_id=next_item.id) }}">
+          <div class="small text-white-50">Selanjutnya →</div>
+          <div class="fw-semibold text-truncate">#{{ next_item.nomor }} · {{ next_item.judul }}</div>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="d-flex flex-wrap gap-2 mt-3">
+      <a class="btn btn-outline-secondary"
          href="{{ url_for('hafalan_practice', category=attempt.category, item_id=attempt.item_id) }}">
         🔁 Coba Lagi
       </a>
