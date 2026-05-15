@@ -69,7 +69,7 @@ Setelah mengedit JSON, restart `python app.py` agar perubahan terbaca.
 | Pendidikan Agama Islam | 130 |
 | Pendidikan Pancasila | 104 |
 | Bahasa Indonesia | 193 |
-| Bahasa Inggris | 112 |
+| Bahasa Inggris | 162 |
 | Matematika | 104 |
 | IPA (English) | 105 |
 | IPS | 111 |
