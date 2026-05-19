@@ -7,14 +7,6 @@ CONTENT_PATH = os.path.join(
     os.path.dirname(__file__), "content", "juz30.json"
 )
 
-KATEGORI = {
-    "sangat-pendek": {"label": "Sangat Pendek", "range": "3–7 ayat"},
-    "pendek": {"label": "Pendek", "range": "8–15 ayat"},
-    "sedang": {"label": "Sedang", "range": "16–25 ayat"},
-    "panjang": {"label": "Panjang", "range": "26+ ayat"},
-    "semua": {"label": "Semua Surat", "range": "—"},
-}
-
 _CACHE = {}
 
 
@@ -29,18 +21,9 @@ def _load():
     return _CACHE["all"]
 
 
-def all_surat():
-    return list(_load())
-
-
-def by_kategori(kategori: str):
-    items = _load()
-    if kategori == "semua":
-        return sorted(items, key=lambda s: s["jumlah_ayat"])
-    return sorted(
-        [s for s in items if s.get("kategori") == kategori],
-        key=lambda s: s["jumlah_ayat"],
-    )
+def all_surat_sorted():
+    """All 38 surat ordered by surat number (1, 78, 79, …, 114)."""
+    return sorted(_load(), key=lambda s: s["nomor"])
 
 
 def find(surat_id: str):
@@ -50,24 +33,14 @@ def find(surat_id: str):
     return None
 
 
-def random_from(kategori: str):
-    pool = by_kategori(kategori)
+def random_surat():
+    pool = _load()
     return random.choice(pool) if pool else None
 
 
-def kategori_counts():
-    items = _load()
-    counts = {k: 0 for k in KATEGORI if k != "semua"}
-    for s in items:
-        k = s.get("kategori")
-        if k in counts:
-            counts[k] += 1
-    counts["semua"] = sum(counts.values())
-    return counts
-
-
-def neighbors(kategori: str, surat_id: str):
-    pool = by_kategori(kategori)
+def neighbors(surat_id: str):
+    """Prev/next surat by nomor order, wrapping at boundaries."""
+    pool = all_surat_sorted()
     if not pool:
         return None, None, 0, 0
     ids = [s["id"] for s in pool]

@@ -529,12 +529,10 @@ def hafalan_riwayat():
 # ---------------------------------------------------------------------------
 
 @app.route("/quran")
-def quran_filter():
-    counts = qln.kategori_counts()
+def quran_select():
     return render_template(
-        "quran_filter.html",
-        kategori=qln.KATEGORI,
-        counts=counts,
+        "quran_select.html",
+        items=qln.all_surat_sorted(),
         student_name=session.get("student_name", ""),
     )
 
@@ -545,34 +543,15 @@ def quran_set_name():
     if name:
         session["student_name"] = name
         session.modified = True
-    return redirect(request.referrer or url_for("quran_filter"))
-
-
-@app.route("/quran/kategori/<kategori>")
-def quran_select(kategori):
-    if kategori not in qln.KATEGORI:
-        abort(404)
-    items = qln.by_kategori(kategori)
-    return render_template(
-        "quran_select.html",
-        kategori=kategori,
-        kategori_label=qln.KATEGORI[kategori]["label"],
-        kategori_range=qln.KATEGORI[kategori]["range"],
-        items=items,
-        student_name=session.get("student_name", ""),
-    )
+    return redirect(request.referrer or url_for("quran_select"))
 
 
 @app.route("/quran/random")
 def quran_random():
-    kategori = request.args.get("kategori", "semua")
-    if kategori not in qln.KATEGORI:
-        kategori = "semua"
-    surat = qln.random_from(kategori)
+    surat = qln.random_surat()
     if not surat:
-        return redirect(url_for("quran_filter"))
-    return redirect(url_for("quran_practice", surat_id=surat["id"],
-                             kategori=kategori))
+        return redirect(url_for("quran_select"))
+    return redirect(url_for("quran_practice", surat_id=surat["id"]))
 
 
 @app.route("/quran/<surat_id>")
@@ -581,14 +560,10 @@ def quran_practice(surat_id):
     if not surat:
         abort(404)
     if not session.get("student_name"):
-        return redirect(url_for("quran_filter"))
-    kategori = request.args.get("kategori", surat["kategori"])
-    if kategori not in qln.KATEGORI:
-        kategori = surat["kategori"]
+        return redirect(url_for("quran_select"))
     return render_template(
         "quran_practice.html",
         surat=surat,
-        kategori=kategori,
         student_name=session["student_name"],
         ayat_mode_available=surat["jumlah_ayat"] > 15,
     )
@@ -602,14 +577,10 @@ def quran_practice_ayat(surat_id):
     if surat["jumlah_ayat"] <= 15:
         return redirect(url_for("quran_practice", surat_id=surat_id))
     if not session.get("student_name"):
-        return redirect(url_for("quran_filter"))
-    kategori = request.args.get("kategori", surat["kategori"])
-    if kategori not in qln.KATEGORI:
-        kategori = surat["kategori"]
+        return redirect(url_for("quran_select"))
     return render_template(
         "quran_practice_ayat.html",
         surat=surat,
-        kategori=kategori,
         student_name=session["student_name"],
     )
 
@@ -712,9 +683,7 @@ def quran_result(attempt_id):
         abort(404)
     surat = qln.find(attempt["surat_id"])
     feedback = scorer.feedback_for(attempt["score"])
-    prev_s, next_s, position, total = qln.neighbors(
-        attempt["kategori"], attempt["surat_id"]
-    )
+    prev_s, next_s, position, total = qln.neighbors(attempt["surat_id"])
     return render_template(
         "quran_result.html",
         attempt=attempt,

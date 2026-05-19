@@ -1,25 +1,43 @@
 {% extends "base.html" %}
-{% block title %}Quran — {{ kategori_label }}{% endblock %}
+{% block title %}Hafalan Quran — Daftar Surat{% endblock %}
 {% block content %}
 <div class="row justify-content-center">
   <div class="col-lg-10">
     <div class="d-flex align-items-center mb-3 flex-wrap gap-2">
-      <a href="{{ url_for('quran_filter') }}" class="btn btn-sm btn-outline-secondary">← Pilih Kategori</a>
-      <h1 class="mb-0">📖 {{ kategori_label }} <small class="text-muted">· {{ kategori_range }}</small></h1>
+      <a href="{{ url_for('landing') }}" class="btn btn-sm btn-outline-secondary">← Beranda</a>
+      <h1 class="mb-0">📕 Hafalan Quran — Juz 30 & Al-Fatihah</h1>
     </div>
 
-    {% if items %}
+    {% if not student_name %}
+    <div class="card mb-4 border-warning">
+      <div class="card-body">
+        <form method="post" action="{{ url_for('quran_set_name') }}" class="row g-2 align-items-end">
+          <div class="col-md-9">
+            <label class="form-label fw-semibold">Nama Siswa</label>
+            <input class="form-control form-control-lg" name="student_name" required minlength="2"
+                   placeholder="Contoh: Ahmad Faruq">
+          </div>
+          <div class="col-md-3">
+            <button class="btn btn-primary btn-lg w-100">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    {% else %}
+    <p class="small text-muted">Siswa: <strong>{{ student_name }}</strong></p>
+    {% endif %}
+
     <div class="d-grid mb-4">
-      <a href="{{ url_for('quran_random', kategori=kategori) }}"
+      <a href="{{ url_for('quran_random') }}"
          class="btn btn-warning btn-lg fw-bold py-3">
-        🎲 Acak — Beri Saya 1 Surat dari Kategori Ini
+        🎲 Acak — Beri Saya 1 Surat Random
       </a>
     </div>
 
-    <h2 class="h5 text-muted mb-2">Atau pilih langsung:</h2>
+    <h2 class="h5 text-muted mb-2">Atau pilih surat:</h2>
     <div class="list-group">
       {% for s in items %}
-      <a href="{{ url_for('quran_practice', surat_id=s.id, kategori=kategori) }}"
+      <a href="{{ url_for('quran_practice', surat_id=s.id) }}"
          class="list-group-item list-group-item-action">
         <div class="d-flex align-items-center flex-wrap gap-2">
           <span class="badge bg-primary" style="min-width:3rem;">{{ s.nomor }}</span>
@@ -36,13 +54,14 @@
       </a>
       {% endfor %}
     </div>
-    {% else %}
-    <div class="alert alert-warning">Belum ada surat di kategori ini.</div>
-    {% endif %}
 
     <p class="text-muted small mt-4">
       Klik nama surat untuk merekam hafalan lengkap. Teks ayat tidak akan ditampilkan
       sebelum kamu selesai merekam — ini tes hafalan murni.
+    </p>
+    <p class="text-muted small">
+      Suara direkam dan diproses oleh layanan transkripsi pihak ketiga (Groq).
+      Aplikasi mengecek kebenaran <strong>teks bacaan</strong>, bukan tajwid.
     </p>
   </div>
 </div>

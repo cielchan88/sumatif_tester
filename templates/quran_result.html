@@ -100,7 +100,7 @@
       <div class="col-6 col-md-4">
         {% if prev_surat %}
         <a class="btn btn-outline-primary w-100 h-100 text-start py-3"
-           href="{{ url_for('quran_practice', surat_id=prev_surat.id, kategori=attempt.kategori) }}">
+           href="{{ url_for('quran_practice', surat_id=prev_surat.id) }}">
           <div class="small text-muted">← Sebelumnya</div>
           <div class="fw-semibold text-truncate">#{{ prev_surat.nomor }} · {{ prev_surat.nama_latin }}</div>
         </a>
@@ -116,7 +116,7 @@
       <div class="col-6 col-md-4">
         {% if next_surat %}
         <a class="btn btn-primary w-100 h-100 text-end py-3"
-           href="{{ url_for('quran_practice', surat_id=next_surat.id, kategori=attempt.kategori) }}">
+           href="{{ url_for('quran_practice', surat_id=next_surat.id) }}">
           <div class="small text-white-50">Selanjutnya →</div>
           <div class="fw-semibold text-truncate">#{{ next_surat.nomor }} · {{ next_surat.nama_latin }}</div>
         </a>
@@ -127,15 +127,15 @@
 
     <div class="d-flex flex-wrap gap-2 mt-3">
       <a class="btn btn-outline-secondary"
-         href="{{ url_for('quran_practice', surat_id=attempt.surat_id, kategori=attempt.kategori) }}">
+         href="{{ url_for('quran_practice', surat_id=attempt.surat_id) }}">
         🔁 Coba Lagi
       </a>
       <a class="btn btn-warning"
-         href="{{ url_for('quran_random', kategori=attempt.kategori) }}">
-        🎲 Acak Baru (Kategori Sama)
+         href="{{ url_for('quran_random') }}">
+        🎲 Acak Surat Lain
       </a>
       <a class="btn btn-outline-secondary"
-         href="{{ url_for('quran_select', kategori=attempt.kategori) }}">
+         href="{{ url_for('quran_select') }}">
         Daftar Surat
       </a>
       <a class="btn btn-outline-secondary ms-auto"
