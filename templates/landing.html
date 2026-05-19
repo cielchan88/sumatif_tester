@@ -82,8 +82,7 @@
   </div>
   {% if session.get('student_name') %}
   <div class="text-center mt-3">
-    <a href="{{ url_for('hafalan_riwayat') }}" class="small me-3">Riwayat Doa/Hadits →</a>
-    <a href="{{ url_for('quran_riwayat') }}" class="small">Riwayat Quran →</a>
+    <a href="{{ url_for('riwayat') }}" class="small">Lihat Riwayat Hafalan Saya →</a>
   </div>
   {% endif %}
 </section>

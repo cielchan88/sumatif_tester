@@ -318,6 +318,42 @@ def get_quran_attempt(attempt_id):
     return d
 
 
+def unified_hafalan_history(student_name, category=None, limit=300):
+    """Combine hafalan_attempts (doa + hadits) and quran_attempts into one
+    timeline. Each row has a `kind` field ('doa'|'hadits'|'quran') for
+    filtering and routing.
+    """
+    rows = []
+    if category in (None, "doa", "hadits"):
+        sql = (
+            "SELECT id, category AS kind, grade, item_id AS detail_id, "
+            "item_title AS title, score, timestamp, "
+            "score_arab, score_artinya, NULL AS mode, NULL AS jumlah_ayat "
+            "FROM hafalan_attempts "
+            "WHERE LOWER(student_name) = ?"
+        )
+        params = [name_key(student_name)]
+        if category in ("doa", "hadits"):
+            sql += " AND category = ?"
+            params.append(category)
+        with get_conn() as conn:
+            for r in conn.execute(sql, tuple(params)).fetchall():
+                rows.append(dict(r))
+    if category in (None, "quran"):
+        with get_conn() as conn:
+            for r in conn.execute(
+                "SELECT id, 'quran' AS kind, NULL AS grade, surat_id AS detail_id, "
+                "surat_nama AS title, score, timestamp, "
+                "NULL AS score_arab, NULL AS score_artinya, mode, jumlah_ayat, "
+                "surat_nomor, kategori "
+                "FROM quran_attempts WHERE LOWER(student_name) = ?",
+                (name_key(student_name),),
+            ).fetchall():
+                rows.append(dict(r))
+    rows.sort(key=lambda r: r.get("timestamp") or "", reverse=True)
+    return rows[:limit]
+
+
 def quran_history(student_name, limit=100):
     with get_conn() as conn:
         rows = conn.execute(
