@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Quran — {{ kategori_label }}{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div class="d-flex align-items-center mb-3 flex-wrap gap-2">
+      <a href="{{ url_for('quran_filter') }}" class="btn btn-sm btn-outline-secondary">← Pilih Kategori</a>
+      <h1 class="mb-0">📖 {{ kategori_label }} <small class="text-muted">· {{ kategori_range }}</small></h1>
+    </div>
+
+    {% if items %}
+    <div class="d-grid mb-4">
+      <a href="{{ url_for('quran_random', kategori=kategori) }}"
+         class="btn btn-warning btn-lg fw-bold py-3">
+        🎲 Acak — Beri Saya 1 Surat dari Kategori Ini
+      </a>
+    </div>
+
+    <h2 class="h5 text-muted mb-2">Atau pilih langsung:</h2>
+    <div class="list-group">
+      {% for s in items %}
+      <a href="{{ url_for('quran_practice', surat_id=s.id, kategori=kategori) }}"
+         class="list-group-item list-group-item-action">
+        <div class="d-flex align-items-center flex-wrap gap-2">
+          <span class="badge bg-primary" style="min-width:3rem;">{{ s.nomor }}</span>
+          <span class="arabic-text-inline fs-4 fw-bold" dir="rtl" lang="ar">{{ s.nama_arab }}</span>
+          <span class="fw-semibold">{{ s.nama_latin }}</span>
+          <span class="text-muted small ms-2">"{{ s.arti }}"</span>
+          <span class="ms-auto">
+            <span class="badge bg-light text-dark">{{ s.jumlah_ayat }} ayat</span>
+            {% if s.jumlah_ayat > 15 %}
+            <span class="badge bg-info">🔢 Mode Per-Ayat Tersedia</span>
+            {% endif %}
+          </span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-warning">Belum ada surat di kategori ini.</div>
+    {% endif %}
+
+    <p class="text-muted small mt-4">
+      Klik nama surat untuk merekam hafalan lengkap. Teks ayat tidak akan ditampilkan
+      sebelum kamu selesai merekam — ini tes hafalan murni.
+    </p>
+  </div>
+</div>
+{% endblock %}

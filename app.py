@@ -19,6 +19,8 @@ from flask_session import Session
 import hafalan_loader as hl
 import models
 import question_loader as ql
+import quran_loader as qln
+import quran_scorer as qs
 import scorer
 
 app = Flask(__name__)
@@ -524,6 +526,223 @@ def hafalan_riwayat():
         history=history,
         category=category,
         categories=hl.CATEGORIES,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Hafalan Quran (Juz 30 + Al-Fatihah)
+# ---------------------------------------------------------------------------
+
+@app.route("/quran")
+def quran_filter():
+    counts = qln.kategori_counts()
+    return render_template(
+        "quran_filter.html",
+        kategori=qln.KATEGORI,
+        counts=counts,
+        student_name=session.get("student_name", ""),
+    )
+
+
+@app.route("/quran/set_name", methods=["POST"])
+def quran_set_name():
+    name = (request.form.get("student_name") or "").strip()
+    if name:
+        session["student_name"] = name
+        session.modified = True
+    return redirect(request.referrer or url_for("quran_filter"))
+
+
+@app.route("/quran/kategori/<kategori>")
+def quran_select(kategori):
+    if kategori not in qln.KATEGORI:
+        abort(404)
+    items = qln.by_kategori(kategori)
+    return render_template(
+        "quran_select.html",
+        kategori=kategori,
+        kategori_label=qln.KATEGORI[kategori]["label"],
+        kategori_range=qln.KATEGORI[kategori]["range"],
+        items=items,
+        student_name=session.get("student_name", ""),
+    )
+
+
+@app.route("/quran/random")
+def quran_random():
+    kategori = request.args.get("kategori", "semua")
+    if kategori not in qln.KATEGORI:
+        kategori = "semua"
+    surat = qln.random_from(kategori)
+    if not surat:
+        return redirect(url_for("quran_filter"))
+    return redirect(url_for("quran_practice", surat_id=surat["id"],
+                             kategori=kategori))
+
+
+@app.route("/quran/<surat_id>")
+def quran_practice(surat_id):
+    surat = qln.find(surat_id)
+    if not surat:
+        abort(404)
+    if not session.get("student_name"):
+        return redirect(url_for("quran_filter"))
+    kategori = request.args.get("kategori", surat["kategori"])
+    if kategori not in qln.KATEGORI:
+        kategori = surat["kategori"]
+    return render_template(
+        "quran_practice.html",
+        surat=surat,
+        kategori=kategori,
+        student_name=session["student_name"],
+        ayat_mode_available=surat["jumlah_ayat"] > 15,
+    )
+
+
+@app.route("/quran/<surat_id>/ayat")
+def quran_practice_ayat(surat_id):
+    surat = qln.find(surat_id)
+    if not surat:
+        abort(404)
+    if surat["jumlah_ayat"] <= 15:
+        return redirect(url_for("quran_practice", surat_id=surat_id))
+    if not session.get("student_name"):
+        return redirect(url_for("quran_filter"))
+    kategori = request.args.get("kategori", surat["kategori"])
+    if kategori not in qln.KATEGORI:
+        kategori = surat["kategori"]
+    return render_template(
+        "quran_practice_ayat.html",
+        surat=surat,
+        kategori=kategori,
+        student_name=session["student_name"],
+    )
+
+
+def _surat_full_text(surat):
+    return " ".join(a["arab"] for a in surat["ayat"])
+
+
+@app.route("/quran/<surat_id>/submit", methods=["POST"])
+def quran_submit(surat_id):
+    surat = qln.find(surat_id)
+    if not surat:
+        return jsonify({"ok": False, "error": "Surat tidak ditemukan."}), 404
+    student_name = session.get("student_name")
+    if not student_name:
+        return jsonify({"ok": False, "error": "Nama siswa belum diisi."}), 400
+    audio = _read_audio("audio")
+    if not audio:
+        return jsonify({"ok": False, "error": "Audio tidak terkirim."}), 400
+
+    try:
+        import transcriber
+        transcript = transcriber.transcribe(audio, language="ar")
+    except Exception as e:
+        return jsonify({
+            "ok": False,
+            "error": "Gagal memproses suara. Coba lagi ya.",
+            "detail": str(e),
+        }), 502
+
+    is_fatihah = surat["nomor"] == 1
+    result = qs.score_full_surat(_surat_full_text(surat), transcript,
+                                  is_al_fatihah=is_fatihah)
+    attempt_id = models.save_quran_attempt(
+        student_name=student_name, surat_id=surat["id"],
+        surat_nomor=surat["nomor"], surat_nama=surat["nama_latin"],
+        kategori=surat["kategori"], mode="full",
+        jumlah_ayat=surat["jumlah_ayat"], score=result["score"],
+        transcript=transcript,
+    )
+    return jsonify({
+        "ok": True,
+        "result_url": url_for("quran_result", attempt_id=attempt_id),
+    })
+
+
+@app.route("/quran/<surat_id>/submit_ayat", methods=["POST"])
+def quran_submit_ayat(surat_id):
+    surat = qln.find(surat_id)
+    if not surat:
+        return jsonify({"ok": False, "error": "Surat tidak ditemukan."}), 404
+    if surat["jumlah_ayat"] <= 15:
+        return jsonify({"ok": False, "error": "Mode per-ayat tidak tersedia untuk surat ini."}), 400
+    student_name = session.get("student_name")
+    if not student_name:
+        return jsonify({"ok": False, "error": "Nama siswa belum diisi."}), 400
+
+    n = surat["jumlah_ayat"]
+    hyp_list = []
+    try:
+        import transcriber
+        for i in range(1, n + 1):
+            audio = _read_audio(f"audio_{i}")
+            if not audio:
+                return jsonify({"ok": False,
+                                "error": f"Audio ayat {i} belum terkirim."}), 400
+            text = transcriber.transcribe(audio, language="ar",
+                                           filename=f"ayat_{i}.webm")
+            hyp_list.append(text)
+    except Exception as e:
+        return jsonify({
+            "ok": False,
+            "error": "Gagal memproses suara. Coba lagi ya.",
+            "detail": str(e),
+        }), 502
+
+    ref_list = [a["arab"] for a in surat["ayat"]]
+    result = qs.score_per_ayat(ref_list, hyp_list)
+    if "error" in result:
+        return jsonify({"ok": False, "error": "Jumlah ayat tidak cocok."}), 400
+
+    attempt_id = models.save_quran_attempt(
+        student_name=student_name, surat_id=surat["id"],
+        surat_nomor=surat["nomor"], surat_nama=surat["nama_latin"],
+        kategori=surat["kategori"], mode="per_ayat",
+        jumlah_ayat=surat["jumlah_ayat"], score=result["score"],
+        score_per_ayat=result["ayat"],
+        transcript=" \n".join(hyp_list),
+    )
+    return jsonify({
+        "ok": True,
+        "result_url": url_for("quran_result", attempt_id=attempt_id),
+    })
+
+
+@app.route("/quran/result/<int:attempt_id>")
+def quran_result(attempt_id):
+    attempt = models.get_quran_attempt(attempt_id)
+    if not attempt:
+        abort(404)
+    surat = qln.find(attempt["surat_id"])
+    feedback = scorer.feedback_for(attempt["score"])
+    prev_s, next_s, position, total = qln.neighbors(
+        attempt["kategori"], attempt["surat_id"]
+    )
+    return render_template(
+        "quran_result.html",
+        attempt=attempt,
+        surat=surat,
+        feedback=feedback,
+        prev_surat=prev_s,
+        next_surat=next_s,
+        position=position,
+        total=total,
+        student_name=session.get("student_name", attempt["student_name"]),
+    )
+
+
+@app.route("/quran/riwayat")
+def quran_riwayat():
+    name = (request.args.get("name") or session.get("student_name") or "").strip()
+    if not name:
+        return redirect(url_for("landing"))
+    history = models.quran_history(name)
+    return render_template(
+        "quran_riwayat.html",
+        student_name=name,
+        history=history,
     )
 
 

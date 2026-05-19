@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Hafalan Quran — Pilih Kategori{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div class="d-flex align-items-center mb-3 flex-wrap gap-2">
+      <a href="{{ url_for('landing') }}" class="btn btn-sm btn-outline-secondary">← Beranda</a>
+      <h1 class="mb-0">📖 Hafalan Quran — Juz 30 & Al-Fatihah</h1>
+    </div>
+    <p class="text-muted">Pilih kategori panjang surat untuk mulai menguji hafalanmu. 🎙️</p>
+
+    {% if not student_name %}
+    <div class="card mb-4 border-warning">
+      <div class="card-body">
+        <form method="post" action="{{ url_for('quran_set_name') }}" class="row g-2 align-items-end">
+          <div class="col-md-9">
+            <label class="form-label fw-semibold">Nama Siswa</label>
+            <input class="form-control form-control-lg" name="student_name" required minlength="2"
+                   placeholder="Contoh: Ahmad Faruq">
+          </div>
+          <div class="col-md-3">
+            <button class="btn btn-primary btn-lg w-100">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    {% else %}
+    <p class="small text-muted">Siswa: <strong>{{ student_name }}</strong></p>
+    {% endif %}
+
+    <div class="row g-3">
+      {% set order = ['sangat-pendek', 'pendek', 'sedang', 'panjang', 'semua'] %}
+      {% set icons = {'sangat-pendek': '🌱', 'pendek': '🌿', 'sedang': '🌳', 'panjang': '🌲', 'semua': '🌟'} %}
+      {% for slug in order %}
+      {% set meta = kategori[slug] %}
+      <div class="col-md-6 col-lg-4">
+        <a href="{{ url_for('quran_select', kategori=slug) }}" class="text-decoration-none">
+          <div class="card h-100 text-center p-3 hafalan-grade-card">
+            <div class="display-3">{{ icons[slug] }}</div>
+            <div class="fw-semibold fs-5 mt-2">{{ meta.label }}</div>
+            <small class="text-muted">{{ meta.range }}</small>
+            <small class="badge bg-light text-dark mt-2">{{ counts[slug] }} surat</small>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+
+    <p class="text-muted small mt-4 text-center">
+      Suara direkam dan diproses oleh layanan transkripsi pihak ketiga (Groq).
+      Aplikasi mengecek kebenaran <strong>teks bacaan</strong>, bukan tajwid.
+    </p>
+  </div>
+</div>
+{% endblock %}

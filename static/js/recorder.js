@@ -269,4 +269,109 @@
     stages.artinya.btn.addEventListener('click', () => toggle('artinya'));
     showStage('arab');
   };
+
+  // -------------------------------------------------------------------------
+  // Multi-stage (Quran per-ayat)
+  // -------------------------------------------------------------------------
+  // config: { totalAyat, submitUrl, buttonId, statusId, timerId, progressId, errorId }
+  window.initAyatRecorder = function (config) {
+    const btn = document.getElementById(config.buttonId);
+    const status = document.getElementById(config.statusId);
+    const timer = document.getElementById(config.timerId);
+    const progress = document.getElementById(config.progressId);
+    const errBox = document.getElementById(config.errorId);
+    const totalAyat = config.totalAyat;
+    let currentAyat = 1;
+    let recording = false;
+    let recorder = new Recorder();
+    let stopTimer = null;
+    const blobs = [];
+
+    function updateProgress() {
+      progress.textContent = `Ayat ${currentAyat} dari ${totalAyat}`;
+      btn.innerHTML = `🎙️ Rekam Ayat ${currentAyat}`;
+      btn.classList.remove('btn-danger');
+      btn.classList.add('btn-primary');
+      status.textContent = '';
+      timer.textContent = '00:00';
+    }
+
+    btn.addEventListener('click', async () => {
+      errBox.classList.add('d-none');
+      if (!recording) {
+        try {
+          recorder = new Recorder();
+          await recorder.start();
+          recording = true;
+          btn.classList.remove('btn-primary');
+          btn.classList.add('btn-danger');
+          btn.innerHTML = '⏹️ Selesai Ayat';
+          status.textContent = 'Sedang merekam ayat ' + currentAyat + '...';
+          stopTimer = attachTimer(timer);
+        } catch (e) {
+          showError(errBox, e.message || 'Tidak bisa mengakses mikrofon.');
+        }
+        return;
+      }
+      const blob = await recorder.stop();
+      recording = false;
+      if (stopTimer) stopTimer();
+      blobs.push(blob);
+
+      if (currentAyat < totalAyat) {
+        currentAyat += 1;
+        // brief pause then prep next
+        btn.disabled = true;
+        btn.innerHTML = `✅ Ayat ${currentAyat - 1} tersimpan...`;
+        status.textContent = `Bersiap untuk ayat ${currentAyat}...`;
+        setTimeout(() => {
+          btn.disabled = false;
+          updateProgress();
+        }, 800);
+      } else {
+        btn.disabled = true;
+        btn.innerHTML = '✅ Semua ayat tersimpan';
+        status.textContent = 'Mengirim ke server, mohon tunggu...';
+        progress.textContent = 'Memproses semua rekaman...';
+        try {
+          const form = new FormData();
+          blobs.forEach((b, i) => {
+            form.append(`audio_${i + 1}`, b, `ayat_${i + 1}.webm`);
+          });
+          const res = await fetch(config.submitUrl, {
+            method: 'POST', body: form,
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok || !data.ok) {
+            throw new Error(data.error || 'Gagal memproses rekaman.');
+          }
+          window.location.href = data.result_url;
+        } catch (e) {
+          showError(errBox, e.message || 'Terjadi kesalahan.');
+          btn.disabled = false;
+          btn.innerHTML = '🔁 Coba Kirim Ulang';
+          btn.onclick = async () => {
+            errBox.classList.add('d-none');
+            btn.disabled = true;
+            status.textContent = 'Mengirim ulang...';
+            try {
+              const form = new FormData();
+              blobs.forEach((b, i) => {
+                form.append(`audio_${i + 1}`, b, `ayat_${i + 1}.webm`);
+              });
+              const res = await fetch(config.submitUrl, {
+                method: 'POST', body: form,
+              });
+              const data = await res.json().catch(() => ({}));
+              if (!res.ok || !data.ok) throw new Error(data.error || 'Gagal.');
+              window.location.href = data.result_url;
+            } catch (err) {
+              showError(errBox, err.message);
+              btn.disabled = false;
+            }
+          };
+        }
+      }
+    });
+  };
 })();

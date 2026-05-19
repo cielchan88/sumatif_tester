@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Riwayat Quran — {{ student_name }}{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div class="d-flex align-items-center mb-3 flex-wrap gap-2">
+      <a href="{{ url_for('quran_filter') }}" class="btn btn-sm btn-outline-secondary">← Hafalan Quran</a>
+      <h1 class="mb-0">📜 Riwayat Hafalan Quran</h1>
+    </div>
+    <p class="text-muted">Siswa: <strong>{{ student_name }}</strong></p>
+
+    {% if history %}
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Waktu</th>
+            <th>Surat</th>
+            <th>Kategori</th>
+            <th>Mode</th>
+            <th class="text-end">Skor</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for h in history %}
+          <tr>
+            <td class="text-muted small">{{ h.timestamp|fmtdate }}</td>
+            <td>
+              <span class="badge bg-light text-dark">{{ h.surat_nomor }}</span>
+              {{ h.surat_nama }}
+              <small class="text-muted d-block">{{ h.jumlah_ayat }} ayat</small>
+            </td>
+            <td><small>{{ h.kategori }}</small></td>
+            <td>
+              {% if h.mode == 'per_ayat' %}🔢 Per-Ayat{% else %}📖 Full{% endif %}
+            </td>
+            <td class="text-end"><span class="fw-bold">{{ h.score }}</span></td>
+            <td class="text-end">
+              <a class="btn btn-sm btn-outline-secondary"
+                 href="{{ url_for('quran_result', attempt_id=h.id) }}">Detail</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info">Belum ada riwayat hafalan Quran. Ayo mulai berlatih! 🎙️</div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

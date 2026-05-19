@@ -61,6 +61,26 @@ CREATE INDEX IF NOT EXISTS idx_hafalan_student
     ON hafalan_attempts(LOWER(student_name));
 CREATE INDEX IF NOT EXISTS idx_hafalan_category
     ON hafalan_attempts(category, grade);
+
+CREATE TABLE IF NOT EXISTS quran_attempts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    student_name TEXT NOT NULL,
+    surat_id TEXT NOT NULL,
+    surat_nomor INTEGER NOT NULL,
+    surat_nama TEXT NOT NULL,
+    kategori TEXT NOT NULL,
+    mode TEXT NOT NULL,
+    jumlah_ayat INTEGER NOT NULL,
+    score INTEGER NOT NULL,
+    score_per_ayat TEXT,
+    transcript TEXT,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_quran_student
+    ON quran_attempts(LOWER(student_name));
+CREATE INDEX IF NOT EXISTS idx_quran_surat
+    ON quran_attempts(surat_id);
 """
 
 
@@ -255,6 +275,59 @@ def hafalan_history(student_name, category=None, limit=100):
     params.append(limit)
     with get_conn() as conn:
         rows = conn.execute(sql, tuple(params)).fetchall()
+    return [dict(r) for r in rows]
+
+
+def save_quran_attempt(*, student_name, surat_id, surat_nomor, surat_nama,
+                        kategori, mode, jumlah_ayat, score,
+                        score_per_ayat=None, transcript=None):
+    import json as _json
+    payload = (
+        _json.dumps(score_per_ayat, ensure_ascii=False)
+        if score_per_ayat is not None else None
+    )
+    with get_conn() as conn:
+        cur = conn.execute(
+            """INSERT INTO quran_attempts
+               (student_name, surat_id, surat_nomor, surat_nama, kategori, mode,
+                jumlah_ayat, score, score_per_ayat, transcript)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            (
+                normalize_name(student_name), surat_id, int(surat_nomor),
+                surat_nama, kategori, mode, int(jumlah_ayat), int(score),
+                payload, transcript,
+            ),
+        )
+        return cur.lastrowid
+
+
+def get_quran_attempt(attempt_id):
+    import json as _json
+    with get_conn() as conn:
+        row = conn.execute(
+            "SELECT * FROM quran_attempts WHERE id = ?", (attempt_id,)
+        ).fetchone()
+    if not row:
+        return None
+    d = dict(row)
+    if d.get("score_per_ayat"):
+        try:
+            d["score_per_ayat"] = _json.loads(d["score_per_ayat"])
+        except (ValueError, TypeError):
+            d["score_per_ayat"] = None
+    return d
+
+
+def quran_history(student_name, limit=100):
+    with get_conn() as conn:
+        rows = conn.execute(
+            """SELECT id, surat_id, surat_nomor, surat_nama, kategori, mode,
+                      jumlah_ayat, score, timestamp
+               FROM quran_attempts
+               WHERE LOWER(student_name) = ?
+               ORDER BY timestamp DESC LIMIT ?""",
+            (name_key(student_name), limit),
+        ).fetchall()
     return [dict(r) for r in rows]
 
 
