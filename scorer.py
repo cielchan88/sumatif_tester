@@ -30,7 +30,8 @@ def normalize_arabic(text: str) -> str:
         return ""
     text = ARABIC_DIACRITICS.sub("", text)
     text = text.replace("ـ", "")
-    text = re.sub(r"[أإآ]", "ا", text)
+    # Alif variants (incl. Quranic alif wasla ٱ U+0671) → plain alif
+    text = re.sub(r"[أإآٱ]", "ا", text)
     text = text.replace("ى", "ي").replace("ؤ", "و").replace("ئ", "ي")
     text = text.replace("ة", "ه")
     text = re.sub(r"[^؀-ۿ\s]", "", text)

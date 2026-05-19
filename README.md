@@ -202,6 +202,65 @@ Catatan dev lokal: `getUserMedia` (perekaman mic browser) hanya jalan di HTTPS a
 Audio yang direkam siswa **dikirim ke server Groq** untuk transkripsi. Disclaimer kecil
 sudah ditampilkan di footer halaman hafalan.
 
+## Modul Hafalan Quran (Juz 30 & Al-Fatihah)
+
+Modul ketiga untuk menguji hafalan **38 surat** (Al-Fatihah + 37 surat Juz 30). Filosofi
+sama dengan modul Doa & Hadits: di halaman praktik hanya tampil **nomor + nama surat +
+jumlah ayat**; teks ayat baru muncul di halaman hasil sebagai feedback edukatif.
+
+### Mode rekaman
+
+| Mode | Tersedia untuk | Output |
+|---|---|---|
+| Full-Surat (default) | Semua surat | 1 rekaman → 1 transkripsi → skor |
+| Per-Ayat | Surat dengan >15 ayat | N rekaman (stepper) → skor per ayat + skor akhir (rata-rata) |
+
+### Kategori panjang surat
+
+| Slug | Range Ayat | Jumlah |
+|---|---|---|
+| `sangat-pendek` | ≤7 ayat | 13 |
+| `pendek` | 8–15 ayat | 10 |
+| `sedang` | 16–25 ayat | 8 |
+| `panjang` | ≥26 ayat | 7 |
+| `semua` | — | 38 |
+
+### Toleransi khusus Quran
+
+- **Bismillah opsional** untuk surat selain Al-Fatihah — siswa boleh mulai dengan/tanpa
+  basmalah tanpa penalti.
+- **Al-Fatihah** memerlukan basmalah sebagai ayat 1.
+- **Alif wasla** (ٱ U+0671, sering dipakai di mushaf Uthmani) dinormalisasi ke alif biasa
+  (ا) sebelum scoring.
+- **Tajwid TIDAK dicek** — aplikasi hanya mengecek kebenaran teks bacaan. Disclaimer
+  sudah ditampilkan di halaman praktik.
+
+### Generate konten
+
+Source: [risan/quran-json](https://github.com/risan/quran-json) (Uthmani script, harakat
+lengkap). Generate ulang dengan:
+
+```bash
+python fetch_quran_data.py
+# → menghasilkan content/juz30.json (38 surat lengkap)
+```
+
+Jalankan di dev environment saja, bukan di PythonAnywhere production.
+
+### Routes
+
+| Route | Fungsi |
+|---|---|
+| `/quran` | Pilih kategori panjang |
+| `/quran/kategori/<slug>` | Daftar surat |
+| `/quran/random?kategori=<slug>` | Acak 1 surat |
+| `/quran/<surat_id>` | Praktik full-surat |
+| `/quran/<surat_id>/ayat` | Praktik per-ayat (hanya >15 ayat) |
+| `/quran/<surat_id>/submit` | Submit audio full |
+| `/quran/<surat_id>/submit_ayat` | Submit N audio (multipart `audio_1...audio_N`) |
+| `/quran/result/<attempt_id>` | Hasil + teks ayat |
+| `/quran/riwayat` | Riwayat siswa |
+
 ## Pengembangan lanjutan
 
 - Tambahkan diagram tren nilai per subject di profile (mis. via Chart.js CDN).

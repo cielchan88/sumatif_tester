@@ -84,6 +84,10 @@ main { min-height: 70vh; }
   font-family: "Traditional Arabic", "Scheherazade New", "Amiri", "Geeza Pro", "Arial", serif;
   font-size: 2rem; line-height: 2; text-align: right;
 }
+.arabic-text-inline {
+  font-family: "Traditional Arabic", "Scheherazade New", "Amiri", "Geeza Pro", "Arial", serif;
+  display: inline-block;
+}
 .arabic-text-hyp {
   font-family: "Traditional Arabic", "Scheherazade New", "Amiri", "Geeza Pro", "Arial", serif;
   font-size: 1.5rem; line-height: 1.9; text-align: right; color: #6c757d;

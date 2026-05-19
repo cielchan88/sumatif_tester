@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block title %}Hasil — Surat {{ attempt.surat_nama }}{% endblock %}
+{% block content %}
+{% set score_color = feedback.color %}
+{% set is_per_ayat = attempt.mode == 'per_ayat' %}
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+
+    <div class="text-center mb-4">
+      <div class="text-uppercase small text-muted">
+        Surat ke-{{ attempt.surat_nomor }} ·
+        {% if is_per_ayat %}Mode Per-Ayat{% else %}Mode Full-Surat{% endif %}
+      </div>
+      {% if surat %}
+      <div class="arabic-text-inline display-3 fw-bold" dir="rtl" lang="ar">{{ surat.nama_arab }}</div>
+      {% endif %}
+      <h1 class="fw-bold">{{ attempt.surat_nama }}</h1>
+      {% if surat and surat.arti %}
+      <p class="text-muted small">"{{ surat.arti }}" · {{ attempt.jumlah_ayat }} ayat</p>
+      {% endif %}
+    </div>
+
+    <div class="card shadow-sm mb-4 border-{{ score_color }}">
+      <div class="card-body text-center p-4">
+        <div class="display-1 fw-bold text-{{ score_color }}">{{ attempt.score }}</div>
+        <div class="fs-5 mb-2">
+          <strong>{{ feedback.level }}</strong> {{ feedback.stars }}
+        </div>
+        <p class="lead mb-3">{{ feedback.message }}</p>
+        <div class="progress" style="height: 12px;">
+          <div class="progress-bar bg-{{ score_color }}" role="progressbar"
+               style="width: {{ attempt.score }}%;"
+               aria-valuenow="{{ attempt.score }}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+
+    {% if is_per_ayat and attempt.score_per_ayat %}
+    <h2 class="h5 mt-4 mb-2">📊 Skor Per Ayat</h2>
+    <div class="card mb-3">
+      <div class="card-body p-0">
+        <div class="list-group list-group-flush">
+          {% for p in attempt.score_per_ayat %}
+          {% set ayat_color = 'success' if p.score >= 85 else ('info' if p.score >= 70 else ('warning' if p.score >= 50 else 'danger')) %}
+          <div class="list-group-item">
+            <div class="d-flex align-items-start gap-3">
+              <span class="badge bg-{{ ayat_color }} fs-6" style="min-width:3rem;">
+                {{ p.score }}
+              </span>
+              <div class="flex-grow-1">
+                <div class="small text-muted mb-1">Ayat {{ p.nomor }}</div>
+                {% if surat and surat.ayat[p.nomor - 1] %}
+                <div class="arabic-text" dir="rtl" lang="ar">
+                  {{ surat.ayat[p.nomor - 1].arab }}
+                </div>
+                {% endif %}
+                <div class="small text-muted mt-2">Bacaanmu:</div>
+                <div class="arabic-text-hyp" dir="rtl" lang="ar">{{ p.hyp or '(kosong)' }}</div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% if attempt.score_per_ayat | selectattr('score', 'lt', 50) | list %}
+    <div class="alert alert-warning small">
+      Ayat
+      {% for p in attempt.score_per_ayat if p.score < 50 %}#{{ p.nomor }}{% if not loop.last %}, {% endif %}{% endfor %}
+      perlu kamu latih lagi. Sisanya sudah bagus!
+    </div>
+    {% endif %}
+
+    {% else %}
+    {# Full-surat mode #}
+    <h2 class="h5 mt-4 mb-2">📖 Teks Surat (Feedback Edukatif)</h2>
+    <div class="card mb-3">
+      <div class="card-body">
+        {% if surat %}
+        {% for a in surat.ayat %}
+        <div class="d-flex gap-2 align-items-baseline mb-2">
+          <span class="badge bg-light text-dark">{{ a.nomor }}</span>
+          <div class="arabic-text flex-grow-1" dir="rtl" lang="ar">{{ a.arab }}</div>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <div class="card-body">
+        <h3 class="h6 text-muted">Transkripsi Suaramu</h3>
+        <div class="arabic-text-hyp" dir="rtl" lang="ar">{{ attempt.transcript or '(kosong)' }}</div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if prev_surat or next_surat %}
+    <div class="row g-2 mt-4 align-items-stretch hafalan-nav">
+      <div class="col-6 col-md-4">
+        {% if prev_surat %}
+        <a class="btn btn-outline-primary w-100 h-100 text-start py-3"
+           href="{{ url_for('quran_practice', surat_id=prev_surat.id, kategori=attempt.kategori) }}">
+          <div class="small text-muted">← Sebelumnya</div>
+          <div class="fw-semibold text-truncate">#{{ prev_surat.nomor }} · {{ prev_surat.nama_latin }}</div>
+        </a>
+        {% endif %}
+      </div>
+      <div class="col-12 col-md-4 text-center align-self-center">
+        {% if total > 1 %}
+        <span class="badge bg-light text-dark">
+          Surat {{ position }} dari {{ total }}
+        </span>
+        {% endif %}
+      </div>
+      <div class="col-6 col-md-4">
+        {% if next_surat %}
+        <a class="btn btn-primary w-100 h-100 text-end py-3"
+           href="{{ url_for('quran_practice', surat_id=next_surat.id, kategori=attempt.kategori) }}">
+          <div class="small text-white-50">Selanjutnya →</div>
+          <div class="fw-semibold text-truncate">#{{ next_surat.nomor }} · {{ next_surat.nama_latin }}</div>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="d-flex flex-wrap gap-2 mt-3">
+      <a class="btn btn-outline-secondary"
+         href="{{ url_for('quran_practice', surat_id=attempt.surat_id, kategori=attempt.kategori) }}">
+        🔁 Coba Lagi
+      </a>
+      <a class="btn btn-warning"
+         href="{{ url_for('quran_random', kategori=attempt.kategori) }}">
+        🎲 Acak Baru (Kategori Sama)
+      </a>
+      <a class="btn btn-outline-secondary"
+         href="{{ url_for('quran_select', kategori=attempt.kategori) }}">
+        Daftar Surat
+      </a>
+      <a class="btn btn-outline-secondary ms-auto"
+         href="{{ url_for('landing') }}">
+        🏠 Beranda
+      </a>
+    </div>
+
+    <p class="text-muted small mt-3">
+      💡 Skor dihitung otomatis dari kemiripan teks transkripsi dengan teks ayat referensi.
+      Mungkin terdapat kesalahan transkripsi; jika kamu yakin bacaanmu benar, mintalah
+      gurumu untuk konfirmasi. Aplikasi tidak mengecek tajwid.
+    </p>
+  </div>
+</div>
+{% endblock %}
