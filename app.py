@@ -513,20 +513,15 @@ def hafalan_result(attempt_id):
 
 @app.route("/hafalan/riwayat")
 def hafalan_riwayat():
-    name = (request.args.get("name") or session.get("student_name") or "").strip()
-    if not name:
-        return redirect(url_for("landing"))
-    category = request.args.get("category") or None
-    if category and category not in hl.CATEGORIES:
-        category = None
-    history = models.hafalan_history(name, category=category)
-    return render_template(
-        "hafalan_riwayat.html",
-        student_name=name,
-        history=history,
-        category=category,
-        categories=hl.CATEGORIES,
-    )
+    # Redirect to the unified riwayat (legacy URL).
+    category = request.args.get("category")
+    args = {}
+    if category in ("doa", "hadits"):
+        args["kind"] = category
+    name = request.args.get("name")
+    if name:
+        args["name"] = name
+    return redirect(url_for("riwayat", **args))
 
 
 # ---------------------------------------------------------------------------
@@ -735,14 +730,28 @@ def quran_result(attempt_id):
 
 @app.route("/quran/riwayat")
 def quran_riwayat():
+    # Redirect to the unified riwayat (legacy URL).
+    args = {"kind": "quran"}
+    name = request.args.get("name")
+    if name:
+        args["name"] = name
+    return redirect(url_for("riwayat", **args))
+
+
+@app.route("/riwayat")
+def riwayat():
     name = (request.args.get("name") or session.get("student_name") or "").strip()
     if not name:
         return redirect(url_for("landing"))
-    history = models.quran_history(name)
+    kind = request.args.get("kind") or None
+    if kind not in ("doa", "hadits", "quran", None):
+        kind = None
+    rows = models.unified_hafalan_history(name, category=kind)
     return render_template(
-        "quran_riwayat.html",
+        "riwayat.html",
         student_name=name,
-        history=history,
+        rows=rows,
+        kind=kind,
     )
 
 

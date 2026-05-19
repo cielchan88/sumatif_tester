@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Riwayat Hafalan — {{ student_name }}{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div class="d-flex align-items-center mb-3 flex-wrap gap-2">
+      <a href="{{ url_for('landing') }}" class="btn btn-sm btn-outline-secondary">← Beranda</a>
+      <h1 class="mb-0">📜 Riwayat Hafalan</h1>
+    </div>
+    <p class="text-muted">Siswa: <strong>{{ student_name }}</strong></p>
+
+    {% set tabs = [('', 'Semua'), ('doa', '🤲 Doa'), ('hadits', '📖 Hadits'), ('quran', '📕 Quran')] %}
+    <div class="btn-group mb-3 flex-wrap" role="group">
+      {% for slug, label in tabs %}
+      {% set active = (kind == slug) or (not kind and not slug) %}
+      <a href="{{ url_for('riwayat') if not slug else url_for('riwayat', kind=slug) }}"
+         class="btn btn-sm {{ 'btn-primary' if active else 'btn-outline-primary' }}">
+        {{ label }}
+      </a>
+      {% endfor %}
+    </div>
+
+    {% if rows %}
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Waktu</th>
+            <th>Kategori</th>
+            <th>Judul</th>
+            <th>Info</th>
+            <th class="text-end">Skor</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in rows %}
+          <tr>
+            <td class="text-muted small">{{ r.timestamp|fmtdate }}</td>
+            <td>
+              {% if r.kind == 'doa' %}
+                <span class="badge bg-primary">🤲 Doa</span>
+              {% elif r.kind == 'hadits' %}
+                <span class="badge bg-success">📖 Hadits</span>
+              {% elif r.kind == 'quran' %}
+                <span class="badge bg-danger">📕 Quran</span>
+              {% endif %}
+            </td>
+            <td>{{ r.title }}</td>
+            <td>
+              {% if r.kind in ('doa', 'hadits') %}
+                <small class="text-muted">Grade {{ r.grade }}</small>
+                {% if r.kind == 'hadits' and r.score_arab is not none %}
+                <small class="text-muted d-block">
+                  Arab {{ r.score_arab }} · Arti {{ r.score_artinya }}
+                </small>
+                {% endif %}
+              {% elif r.kind == 'quran' %}
+                <small class="text-muted">{{ r.jumlah_ayat }} ayat ·
+                  {% if r.mode == 'per_ayat' %}🔢 Per-Ayat{% else %}📖 Full{% endif %}
+                </small>
+              {% endif %}
+            </td>
+            <td class="text-end fw-bold">{{ r.score }}</td>
+            <td class="text-end">
+              {% if r.kind in ('doa', 'hadits') %}
+                <a class="btn btn-sm btn-outline-secondary"
+                   href="{{ url_for('hafalan_result', attempt_id=r.id) }}">Detail</a>
+              {% elif r.kind == 'quran' %}
+                <a class="btn btn-sm btn-outline-secondary"
+                   href="{{ url_for('quran_result', attempt_id=r.id) }}">Detail</a>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+      Belum ada riwayat hafalan{% if kind %} untuk kategori "{{ kind }}"{% endif %}. Ayo mulai berlatih! 🎙️
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
