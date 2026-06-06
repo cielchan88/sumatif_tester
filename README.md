@@ -64,6 +64,8 @@ Setelah mengedit JSON, restart `python app.py` agar perubahan terbaca.
 
 ## Volume soal saat ini
 
+### Kelas 6
+
 | Mapel | Jumlah |
 |---|---|
 | Pendidikan Agama Islam | 130 |
@@ -75,7 +77,29 @@ Setelah mengedit JSON, restart `python app.py` agar perubahan terbaca.
 | IPS | 111 |
 | PJOK | 83 |
 | SBDP | 103 |
-| **Total** | **~985** |
+| **Total Kelas 6** | **~985** |
+
+### Kelas 2
+
+| Mapel | Jumlah |
+|---|---|
+| Bahasa Inggris (Lesson 7, 8, 9, 10, 12) | 60 |
+
+Soal Kelas 2 disimpan sebagai mata pelajaran terpisah dengan nama internal
+"Bahasa Inggris Kelas 2" (label tampilan: "Bahasa Inggris" di bawah heading
+"Kelas 2") sehingga **tidak tercampur** dengan "Bahasa Inggris" Kelas 6 di
+database, leaderboard, maupun anti-repeat.
+
+Untuk menambah mata pelajaran Kelas 2 (atau kelas lain) baru:
+
+1. Buat file `questions/<key>.json` dengan schema yang sama.
+2. Tambahkan entri ke `SUBJECTS` di `question_loader.py` dengan field
+   `grade: "Kelas 2"` (atau nama kelas yang sesuai). Tambahkan
+   `display_name` jika label UI berbeda dari `name` internal.
+3. (Opsional) Tambahkan kelas baru ke `GRADE_ORDER` jika ingin urutan
+   tertentu di landing page.
+
+Untuk memvalidasi soal Kelas 2 English: `python validate_english_kelas2.py`.
 
 ## Reset data
 

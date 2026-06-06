@@ -53,7 +53,7 @@ def _ensure_db():
 def landing():
     return render_template(
         "landing.html",
-        subjects=ql.SUBJECTS,
+        subject_groups=ql.subjects_by_grade(),
         student_name=session.get("student_name", ""),
     )
 

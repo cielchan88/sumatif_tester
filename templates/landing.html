@@ -4,7 +4,7 @@
 <div class="row justify-content-center">
   <div class="col-lg-8">
     <div class="text-center mb-4">
-      <h1 class="fw-bold">Latihan Asesmen Sumatif Kelas 6</h1>
+      <h1 class="fw-bold">Latihan Asesmen Sumatif</h1>
       <p class="lead text-muted">SD Nabawi Islamic School · Tahun Ajaran 2025/2026</p>
     </div>
     <div class="card shadow-sm">
@@ -17,21 +17,28 @@
           </div>
           <div class="mb-3">
             <label class="form-label fs-5">Pilih Mata Pelajaran</label>
-            <div class="row g-2">
-              {% for s in subjects %}
-              <div class="col-md-6">
-                <label class="subject-card">
-                  <input type="radio" name="subject" value="{{ s.name }}" required>
-                  <div class="subject-card-body">
-                    <div class="fw-semibold">{{ s.name }}</div>
-                    <small class="text-muted">
-                      {% if s.lang == 'en' %}Bahasa: English{% else %}Bahasa: Indonesia{% endif %}
-                    </small>
-                  </div>
-                </label>
+            {% for grade, items in subject_groups %}
+            <div class="grade-section {% if not loop.first %}mt-4{% endif %}">
+              <div class="grade-section-heading">
+                <span class="grade-section-label">{{ grade }}</span>
               </div>
-              {% endfor %}
+              <div class="row g-2">
+                {% for s in items %}
+                <div class="col-md-6">
+                  <label class="subject-card">
+                    <input type="radio" name="subject" value="{{ s.name }}" required>
+                    <div class="subject-card-body">
+                      <div class="fw-semibold">{{ s.display_name or s.name }}</div>
+                      <small class="text-muted">
+                        {% if s.lang == 'en' %}Bahasa: English{% else %}Bahasa: Indonesia{% endif %}
+                      </small>
+                    </div>
+                  </label>
+                </div>
+                {% endfor %}
+              </div>
             </div>
+            {% endfor %}
           </div>
           <button class="btn btn-primary btn-lg w-100">Mulai Ujian</button>
         </form>
