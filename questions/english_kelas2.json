@@ -1,0 +1,549 @@
+{
+  "subject": "Bahasa Inggris Kelas 2",
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Lesson 7: At the Farm",
+      "difficulty": "easy",
+      "question": "Which animal says \"moo\"?",
+      "options": {"A": "Duck", "B": "Cow", "C": "Cat", "D": "Bird"},
+      "correct_answer": "B",
+      "explanation": "A cow says \"moo\". Sapi berbunyi \"moo\"."
+    },
+    {
+      "id": 2,
+      "topic": "Lesson 7: At the Farm",
+      "difficulty": "easy",
+      "question": "Which animal says \"quack\"?",
+      "options": {"A": "Duck", "B": "Horse", "C": "Sheep", "D": "Cow"},
+      "correct_answer": "A",
+      "explanation": "A duck says \"quack\". Bebek berbunyi \"quack\"."
+    },
+    {
+      "id": 3,
+      "topic": "Lesson 7: At the Farm",
+      "difficulty": "easy",
+      "question": "The animal that gives us wool is the ___.",
+      "options": {"A": "sheep", "B": "horse", "C": "duck", "D": "pig"},
+      "correct_answer": "A",
+      "explanation": "Sheep give us wool. Domba memberi kita wol."
+    },
+    {
+      "id": 4,
+      "topic": "Lesson 7: At the Farm",
+      "difficulty": "easy",
+      "question": "Which animal gives us milk on the farm?",
+      "options": {"A": "Rabbit", "B": "Cow", "C": "Chicken", "D": "Goat"},
+      "correct_answer": "B",
+      "explanation": "Cows give us milk. (Goats also do, but cows are the most common answer.)"
+    },
+    {
+      "id": 5,
+      "topic": "Lesson 7: At the Farm",
+      "difficulty": "easy",
+      "question": "A baby chicken is called a ___.",
+      "options": {"A": "calf", "B": "chick", "C": "kid", "D": "foal"},
+      "correct_answer": "B",
+      "explanation": "A baby chicken is called a chick."
+    },
+    {
+      "id": 6,
+      "topic": "Lesson 7: At the Farm",
+      "difficulty": "medium",
+      "question": "Andi: \"I like horses.\" Budi: \"___\" (Budi also likes horses)",
+      "options": {"A": "I don't.", "B": "So do I.", "C": "No, I am.", "D": "Yes, you do."},
+      "correct_answer": "B",
+      "explanation": "\"So do I\" is used to agree positively. Budi setuju, jadi pakai \"So do I\"."
+    },
+    {
+      "id": 7,
+      "topic": "Lesson 7: At the Farm",
+      "difficulty": "medium",
+      "question": "Sinta: \"I like ducks.\" Rina: \"___\" (Rina does NOT like ducks)",
+      "options": {"A": "So do I.", "B": "Me too.", "C": "I don't.", "D": "So am I."},
+      "correct_answer": "C",
+      "explanation": "\"I don't\" is the short way to disagree with \"I like ...\"."
+    },
+    {
+      "id": 8,
+      "topic": "Lesson 7: At the Farm",
+      "difficulty": "medium",
+      "question": "Tina: \"I like rabbits.\" Lina: \"So do I.\" What does Lina mean?",
+      "options": {"A": "She doesn't like rabbits.", "B": "She also likes rabbits.", "C": "She has a rabbit.", "D": "She is a rabbit."},
+      "correct_answer": "B",
+      "explanation": "\"So do I\" means \"I do too\" — Lina also likes rabbits."
+    },
+    {
+      "id": 9,
+      "topic": "Lesson 7: At the Farm",
+      "difficulty": "medium",
+      "question": "Read: \"Dina goes to the farm. She sees three cows and two ducks. She likes the ducks.\" — How many ducks does Dina see?",
+      "options": {"A": "One", "B": "Two", "C": "Three", "D": "Five"},
+      "correct_answer": "B",
+      "explanation": "The text says \"two ducks\"."
+    },
+    {
+      "id": 10,
+      "topic": "Lesson 7: At the Farm",
+      "difficulty": "medium",
+      "question": "Read: \"Tomi feeds the goats. The goats are white and brown.\" — What is the colour of the goats?",
+      "options": {"A": "Black and white", "B": "White and brown", "C": "Only white", "D": "Only brown"},
+      "correct_answer": "B",
+      "explanation": "The text says the goats are white and brown."
+    },
+    {
+      "id": 11,
+      "topic": "Lesson 7: At the Farm",
+      "difficulty": "hard",
+      "question": "Read: \"On the farm there are five chickens, two horses and one pig.\" — How many animals are there in total?",
+      "options": {"A": "Six", "B": "Seven", "C": "Eight", "D": "Nine"},
+      "correct_answer": "C",
+      "explanation": "5 + 2 + 1 = 8 animals."
+    },
+    {
+      "id": 12,
+      "topic": "Lesson 7: At the Farm",
+      "difficulty": "hard",
+      "question": "Rio: \"I don't like pigs.\" Sari: \"___\" (Sari agrees — she also does not like pigs)",
+      "options": {"A": "So do I.", "B": "Neither do I.", "C": "Yes, I do.", "D": "I like."},
+      "correct_answer": "B",
+      "explanation": "To agree with a negative (\"I don't ...\"), use \"Neither do I\"."
+    },
+
+    {
+      "id": 13,
+      "topic": "Lesson 8: My Town",
+      "difficulty": "easy",
+      "question": "We borrow and read books at the ___.",
+      "options": {"A": "market", "B": "library", "C": "hospital", "D": "bank"},
+      "correct_answer": "B",
+      "explanation": "We borrow books at the library."
+    },
+    {
+      "id": 14,
+      "topic": "Lesson 8: My Town",
+      "difficulty": "easy",
+      "question": "Doctors and nurses work at the ___.",
+      "options": {"A": "school", "B": "park", "C": "hospital", "D": "post office"},
+      "correct_answer": "C",
+      "explanation": "Doctors and nurses work at the hospital."
+    },
+    {
+      "id": 15,
+      "topic": "Lesson 8: My Town",
+      "difficulty": "easy",
+      "question": "We can buy vegetables and fish at the ___.",
+      "options": {"A": "library", "B": "mosque", "C": "market", "D": "school"},
+      "correct_answer": "C",
+      "explanation": "We buy vegetables and fish at the market."
+    },
+    {
+      "id": 16,
+      "topic": "Lesson 8: My Town",
+      "difficulty": "easy",
+      "question": "Muslims pray at the ___.",
+      "options": {"A": "mosque", "B": "post office", "C": "bank", "D": "park"},
+      "correct_answer": "A",
+      "explanation": "Muslims pray at the mosque."
+    },
+    {
+      "id": 17,
+      "topic": "Lesson 8: My Town",
+      "difficulty": "easy",
+      "question": "We send letters at the ___.",
+      "options": {"A": "park", "B": "post office", "C": "library", "D": "market"},
+      "correct_answer": "B",
+      "explanation": "We send letters at the post office."
+    },
+    {
+      "id": 18,
+      "topic": "Lesson 8: My Town",
+      "difficulty": "medium",
+      "question": "The ball is ___ the two chairs.",
+      "options": {"A": "behind", "B": "between", "C": "in front of", "D": "on"},
+      "correct_answer": "B",
+      "explanation": "\"Between\" is used for something in the middle of two things."
+    },
+    {
+      "id": 19,
+      "topic": "Lesson 8: My Town",
+      "difficulty": "medium",
+      "question": "The cat is hiding ___ the box. We cannot see it.",
+      "options": {"A": "in front of", "B": "between", "C": "behind", "D": "on"},
+      "correct_answer": "C",
+      "explanation": "\"Behind\" means on the other side, hidden from view."
+    },
+    {
+      "id": 20,
+      "topic": "Lesson 8: My Town",
+      "difficulty": "medium",
+      "question": "The school is ___ the mosque and the park. (the school is in the middle)",
+      "options": {"A": "behind", "B": "between", "C": "in front of", "D": "under"},
+      "correct_answer": "B",
+      "explanation": "\"Between\" — the school is in the middle of the two places."
+    },
+    {
+      "id": 21,
+      "topic": "Lesson 8: My Town",
+      "difficulty": "medium",
+      "question": "Read: \"Pak Budi goes to the bank to save his money. Then he goes to the market.\" — Where does Pak Budi go first?",
+      "options": {"A": "The market", "B": "The library", "C": "The bank", "D": "The hospital"},
+      "correct_answer": "C",
+      "explanation": "The text says he goes to the bank first."
+    },
+    {
+      "id": 22,
+      "topic": "Lesson 8: My Town",
+      "difficulty": "hard",
+      "question": "We can see the teacher's face. The board is ___ the teacher.",
+      "options": {"A": "behind", "B": "between", "C": "in front of", "D": "under"},
+      "correct_answer": "A",
+      "explanation": "If we see the teacher's face, the board must be behind her (we look past her at the board)."
+    },
+    {
+      "id": 23,
+      "topic": "Lesson 8: My Town",
+      "difficulty": "hard",
+      "question": "Read: \"Our school is in front of the post office. The library is between the school and the bank.\" — Which place is next to the library?",
+      "options": {"A": "The hospital", "B": "The mosque", "C": "The bank", "D": "The market"},
+      "correct_answer": "C",
+      "explanation": "\"Between the school and the bank\" means the bank is on one side of the library."
+    },
+    {
+      "id": 24,
+      "topic": "Lesson 8: My Town",
+      "difficulty": "hard",
+      "question": "A car is parked ___ the gate, so we cannot drive in.",
+      "options": {"A": "behind", "B": "between", "C": "in front of", "D": "next to"},
+      "correct_answer": "C",
+      "explanation": "If it blocks the entry, the car must be in front of the gate."
+    },
+
+    {
+      "id": 25,
+      "topic": "Lesson 9: Our Clothes",
+      "difficulty": "easy",
+      "question": "We wear ___ on our feet.",
+      "options": {"A": "a hat", "B": "shoes", "C": "a shirt", "D": "gloves"},
+      "correct_answer": "B",
+      "explanation": "Shoes are worn on the feet."
+    },
+    {
+      "id": 26,
+      "topic": "Lesson 9: Our Clothes",
+      "difficulty": "easy",
+      "question": "We wear a ___ on our head.",
+      "options": {"A": "hat", "B": "shirt", "C": "skirt", "D": "sock"},
+      "correct_answer": "A",
+      "explanation": "A hat is worn on the head."
+    },
+    {
+      "id": 27,
+      "topic": "Lesson 9: Our Clothes",
+      "difficulty": "easy",
+      "question": "When it is cold, we put on a ___.",
+      "options": {"A": "dress", "B": "skirt", "C": "jacket", "D": "hat"},
+      "correct_answer": "C",
+      "explanation": "A jacket keeps us warm when it is cold."
+    },
+    {
+      "id": 28,
+      "topic": "Lesson 9: Our Clothes",
+      "difficulty": "easy",
+      "question": "British English word for \"pants\" is ___.",
+      "options": {"A": "shoes", "B": "trousers", "C": "shirt", "D": "socks"},
+      "correct_answer": "B",
+      "explanation": "In British English, long pants are called \"trousers\"."
+    },
+    {
+      "id": 29,
+      "topic": "Lesson 9: Our Clothes",
+      "difficulty": "easy",
+      "question": "What do girls usually wear that boys do not? (Choose one item.)",
+      "options": {"A": "shoes", "B": "socks", "C": "a dress", "D": "a hat"},
+      "correct_answer": "C",
+      "explanation": "A dress is usually worn by girls."
+    },
+    {
+      "id": 30,
+      "topic": "Lesson 9: Our Clothes",
+      "difficulty": "medium",
+      "question": "Look! She ___ a beautiful dress now.",
+      "options": {"A": "wear", "B": "wears", "C": "is wearing", "D": "wore"},
+      "correct_answer": "C",
+      "explanation": "Present Continuous: \"is wearing\" (action happening now). The word \"now\" is the clue."
+    },
+    {
+      "id": 31,
+      "topic": "Lesson 9: Our Clothes",
+      "difficulty": "medium",
+      "question": "Tom ___ playing football at the moment.",
+      "options": {"A": "is", "B": "are", "C": "am", "D": "be"},
+      "correct_answer": "A",
+      "explanation": "Singular subject \"Tom\" uses \"is\" with -ing verb."
+    },
+    {
+      "id": 32,
+      "topic": "Lesson 9: Our Clothes",
+      "difficulty": "medium",
+      "question": "I ___ washed my socks today.",
+      "options": {"A": "have", "B": "has", "C": "having", "D": "had"},
+      "correct_answer": "A",
+      "explanation": "Present Perfect with \"I\" uses \"have\"."
+    },
+    {
+      "id": 33,
+      "topic": "Lesson 9: Our Clothes",
+      "difficulty": "medium",
+      "question": "Look at the boys! They ___ wearing the same shirt.",
+      "options": {"A": "is", "B": "am", "C": "are", "D": "be"},
+      "correct_answer": "C",
+      "explanation": "Plural subject \"they\" uses \"are\"."
+    },
+    {
+      "id": 34,
+      "topic": "Lesson 9: Our Clothes",
+      "difficulty": "hard",
+      "question": "Mother ___ ironed my school shirt.",
+      "options": {"A": "have", "B": "has", "C": "are", "D": "is"},
+      "correct_answer": "B",
+      "explanation": "Present Perfect: \"Mother\" (third person singular) uses \"has\"."
+    },
+    {
+      "id": 35,
+      "topic": "Lesson 9: Our Clothes",
+      "difficulty": "hard",
+      "question": "Choose the correct sentence:",
+      "options": {"A": "She have wear a new hat.", "B": "She has worn a new hat.", "C": "She has wears a new hat.", "D": "She have worn a new hat."},
+      "correct_answer": "B",
+      "explanation": "Present Perfect = has/have + past participle (worn). \"She\" needs \"has\"."
+    },
+    {
+      "id": 36,
+      "topic": "Lesson 9: Our Clothes",
+      "difficulty": "hard",
+      "question": "My little brother ___ his new shoes right now.",
+      "options": {"A": "wear", "B": "wears", "C": "is wearing", "D": "wore"},
+      "correct_answer": "C",
+      "explanation": "\"Right now\" signals Present Continuous: \"is wearing\"."
+    },
+
+    {
+      "id": 37,
+      "topic": "Lesson 10: Our Hobbies",
+      "difficulty": "easy",
+      "question": "Reading books is my favourite ___.",
+      "options": {"A": "food", "B": "hobby", "C": "town", "D": "animal"},
+      "correct_answer": "B",
+      "explanation": "Reading is a hobby."
+    },
+    {
+      "id": 38,
+      "topic": "Lesson 10: Our Hobbies",
+      "difficulty": "easy",
+      "question": "I ___ swimming. It makes me happy.",
+      "options": {"A": "like", "B": "likes", "C": "don't", "D": "am"},
+      "correct_answer": "A",
+      "explanation": "With \"I\", we say \"I like\"."
+    },
+    {
+      "id": 39,
+      "topic": "Lesson 10: Our Hobbies",
+      "difficulty": "easy",
+      "question": "Which one is a sport hobby?",
+      "options": {"A": "Singing", "B": "Drawing", "C": "Playing football", "D": "Cooking"},
+      "correct_answer": "C",
+      "explanation": "Playing football is a sport."
+    },
+    {
+      "id": 40,
+      "topic": "Lesson 10: Our Hobbies",
+      "difficulty": "easy",
+      "question": "If you ___ rice, you make food.",
+      "options": {"A": "cook", "B": "draw", "C": "sing", "D": "swim"},
+      "correct_answer": "A",
+      "explanation": "We cook food."
+    },
+    {
+      "id": 41,
+      "topic": "Lesson 10: Our Hobbies",
+      "difficulty": "easy",
+      "question": "I love to ___. My pictures are colourful.",
+      "options": {"A": "swim", "B": "draw", "C": "dance", "D": "fish"},
+      "correct_answer": "B",
+      "explanation": "Drawing makes pictures."
+    },
+    {
+      "id": 42,
+      "topic": "Lesson 10: Our Hobbies",
+      "difficulty": "medium",
+      "question": "___ you like drawing?",
+      "options": {"A": "Does", "B": "Do", "C": "Is", "D": "Are"},
+      "correct_answer": "B",
+      "explanation": "With \"you\" we use \"Do\"."
+    },
+    {
+      "id": 43,
+      "topic": "Lesson 10: Our Hobbies",
+      "difficulty": "medium",
+      "question": "___ she play the piano?",
+      "options": {"A": "Do", "B": "Does", "C": "Is", "D": "Are"},
+      "correct_answer": "B",
+      "explanation": "With third-person singular \"she\" we use \"Does\"."
+    },
+    {
+      "id": 44,
+      "topic": "Lesson 10: Our Hobbies",
+      "difficulty": "medium",
+      "question": "My sister ___ like fishing. She thinks it is boring.",
+      "options": {"A": "do not", "B": "does not", "C": "is not", "D": "are not"},
+      "correct_answer": "B",
+      "explanation": "Third-person singular negative uses \"does not\"."
+    },
+    {
+      "id": 45,
+      "topic": "Lesson 10: Our Hobbies",
+      "difficulty": "medium",
+      "question": "Choose the polite way to say you don't enjoy cooking:",
+      "options": {"A": "Cooking is bad!", "B": "I hate cooking!", "C": "I don't really like cooking.", "D": "Cooking is stupid."},
+      "correct_answer": "C",
+      "explanation": "\"I don't really like ...\" is the polite way to express dislike."
+    },
+    {
+      "id": 46,
+      "topic": "Lesson 10: Our Hobbies",
+      "difficulty": "medium",
+      "question": "Read: \"Riko loves singing and dancing. He sings every day.\" — What are Riko's hobbies?",
+      "options": {"A": "Reading and swimming", "B": "Singing and dancing", "C": "Fishing and cooking", "D": "Drawing and playing football"},
+      "correct_answer": "B",
+      "explanation": "The text mentions singing and dancing."
+    },
+    {
+      "id": 47,
+      "topic": "Lesson 10: Our Hobbies",
+      "difficulty": "hard",
+      "question": "Choose the correct sentence:",
+      "options": {"A": "Does they like swimming?", "B": "Do they likes swimming?", "C": "Do they like swimming?", "D": "Is they likes swimming?"},
+      "correct_answer": "C",
+      "explanation": "With plural \"they\", use \"Do\" + base verb \"like\"."
+    },
+    {
+      "id": 48,
+      "topic": "Lesson 10: Our Hobbies",
+      "difficulty": "hard",
+      "question": "Rina ___ singing, but she ___ drawing.",
+      "options": {"A": "like / doesn't likes", "B": "likes / doesn't like", "C": "like / don't like", "D": "likes / don't likes"},
+      "correct_answer": "B",
+      "explanation": "Third-person singular: \"likes\" / \"doesn't like\" (base verb after doesn't)."
+    },
+
+    {
+      "id": 49,
+      "topic": "Lesson 12: On Holiday",
+      "difficulty": "easy",
+      "question": "We can swim in the sea at the ___.",
+      "options": {"A": "mountain", "B": "beach", "C": "library", "D": "school"},
+      "correct_answer": "B",
+      "explanation": "The sea is at the beach."
+    },
+    {
+      "id": 50,
+      "topic": "Lesson 12: On Holiday",
+      "difficulty": "easy",
+      "question": "___ do you go on holiday?",
+      "options": {"A": "What", "B": "Where", "C": "Who", "D": "When"},
+      "correct_answer": "B",
+      "explanation": "\"Where\" is used to ask about a place."
+    },
+    {
+      "id": 51,
+      "topic": "Lesson 12: On Holiday",
+      "difficulty": "easy",
+      "question": "We can see lions and elephants at the ___.",
+      "options": {"A": "beach", "B": "mountain", "C": "zoo", "D": "village"},
+      "correct_answer": "C",
+      "explanation": "The zoo has wild animals like lions and elephants."
+    },
+    {
+      "id": 52,
+      "topic": "Lesson 12: On Holiday",
+      "difficulty": "easy",
+      "question": "We can see old things from history at the ___.",
+      "options": {"A": "museum", "B": "park", "C": "beach", "D": "village"},
+      "correct_answer": "A",
+      "explanation": "Museums display historical objects."
+    },
+    {
+      "id": 53,
+      "topic": "Lesson 12: On Holiday",
+      "difficulty": "easy",
+      "question": "The high place with cold air and trees is the ___.",
+      "options": {"A": "beach", "B": "mountain", "C": "zoo", "D": "library"},
+      "correct_answer": "B",
+      "explanation": "Mountains are high with cool air."
+    },
+    {
+      "id": 54,
+      "topic": "Lesson 12: On Holiday",
+      "difficulty": "medium",
+      "question": "I ___ to go to the zoo this holiday.",
+      "options": {"A": "want", "B": "wants", "C": "wanting", "D": "wanted"},
+      "correct_answer": "A",
+      "explanation": "With \"I\" we use \"want\". And it is about a future plan, not past."
+    },
+    {
+      "id": 55,
+      "topic": "Lesson 12: On Holiday",
+      "difficulty": "medium",
+      "question": "Choose the correct question:",
+      "options": {"A": "Where you go on holiday?", "B": "Where do you go on holiday?", "C": "Where you going holiday?", "D": "Where holiday you go?"},
+      "correct_answer": "B",
+      "explanation": "Question form: WH + auxiliary (do) + subject + verb."
+    },
+    {
+      "id": 56,
+      "topic": "Lesson 12: On Holiday",
+      "difficulty": "medium",
+      "question": "We can play, run, and have a picnic at the ___.",
+      "options": {"A": "hospital", "B": "bank", "C": "park", "D": "school"},
+      "correct_answer": "C",
+      "explanation": "A park is a place for playing and picnics."
+    },
+    {
+      "id": 57,
+      "topic": "Lesson 12: On Holiday",
+      "difficulty": "medium",
+      "question": "Read: \"Lina wants to go to the beach. She likes swimming in the sea.\" — Where does Lina want to go?",
+      "options": {"A": "To the mountain", "B": "To the museum", "C": "To the beach", "D": "To the zoo"},
+      "correct_answer": "C",
+      "explanation": "The text says \"Lina wants to go to the beach\"."
+    },
+    {
+      "id": 58,
+      "topic": "Lesson 12: On Holiday",
+      "difficulty": "hard",
+      "question": "My sister ___ to eat ice cream at the beach.",
+      "options": {"A": "want", "B": "wants", "C": "wanting", "D": "are"},
+      "correct_answer": "B",
+      "explanation": "Third-person singular \"my sister\" uses \"wants\"."
+    },
+    {
+      "id": 59,
+      "topic": "Lesson 12: On Holiday",
+      "difficulty": "hard",
+      "question": "Choose the correct sentence:",
+      "options": {"A": "They wants to go to the mountain.", "B": "They want to go to the mountain.", "C": "They wanting to go to the mountain.", "D": "They want goes to the mountain."},
+      "correct_answer": "B",
+      "explanation": "Plural \"they\" uses \"want\" + to + base verb \"go\"."
+    },
+    {
+      "id": 60,
+      "topic": "Lesson 12: On Holiday",
+      "difficulty": "hard",
+      "question": "Read: \"Andi and his family go to the village. They visit Grandma. Andi rides a bicycle in the rice field.\" — Where does Andi ride a bicycle?",
+      "options": {"A": "At the beach", "B": "In the rice field", "C": "At the mountain", "D": "At the zoo"},
+      "correct_answer": "B",
+      "explanation": "The text says \"in the rice field\"."
+    }
+  ]
+}

@@ -1,6 +1,17 @@
 body { font-size: 16px; background: #f6f7fb; }
 main { min-height: 70vh; }
 
+.grade-section-heading {
+  display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem;
+}
+.grade-section-heading::after {
+  content: ""; flex: 1; height: 1px; background: #dee2e6;
+}
+.grade-section-label {
+  font-size: 0.95rem; font-weight: 600; color: #495057; letter-spacing: 0.5px;
+  padding: 0.15rem 0.65rem; border-radius: 999px; background: #e9ecef;
+}
+
 .subject-card { display:block; cursor:pointer; }
 .subject-card input { display:none; }
 .subject-card-body {

@@ -9,19 +9,48 @@ import models
 QUESTIONS_DIR = os.path.join(os.path.dirname(__file__), "questions")
 
 SUBJECTS = [
-    {"key": "pai", "name": "Pendidikan Agama Islam", "lang": "id"},
-    {"key": "pancasila", "name": "Pendidikan Pancasila", "lang": "id"},
-    {"key": "bahasa_indonesia", "name": "Bahasa Indonesia", "lang": "id"},
-    {"key": "bahasa_inggris", "name": "Bahasa Inggris", "lang": "en"},
-    {"key": "matematika", "name": "Matematika", "lang": "en"},
-    {"key": "ipa", "name": "IPA", "lang": "en"},
-    {"key": "ips", "name": "IPS", "lang": "id"},
-    {"key": "pjok", "name": "PJOK", "lang": "id"},
-    {"key": "sbdp", "name": "SBDP", "lang": "id"},
+    {"key": "pai", "name": "Pendidikan Agama Islam", "lang": "id", "grade": "Kelas 6"},
+    {"key": "pancasila", "name": "Pendidikan Pancasila", "lang": "id", "grade": "Kelas 6"},
+    {"key": "bahasa_indonesia", "name": "Bahasa Indonesia", "lang": "id", "grade": "Kelas 6"},
+    {"key": "bahasa_inggris", "name": "Bahasa Inggris", "lang": "en", "grade": "Kelas 6"},
+    {"key": "matematika", "name": "Matematika", "lang": "en", "grade": "Kelas 6"},
+    {"key": "ipa", "name": "IPA", "lang": "en", "grade": "Kelas 6"},
+    {"key": "ips", "name": "IPS", "lang": "id", "grade": "Kelas 6"},
+    {"key": "pjok", "name": "PJOK", "lang": "id", "grade": "Kelas 6"},
+    {"key": "sbdp", "name": "SBDP", "lang": "id", "grade": "Kelas 6"},
+    {"key": "english_kelas2", "name": "Bahasa Inggris Kelas 2", "display_name": "Bahasa Inggris", "lang": "en", "grade": "Kelas 2"},
 ]
 
 SUBJECT_BY_NAME = {s["name"]: s for s in SUBJECTS}
 SUBJECT_BY_KEY = {s["key"]: s for s in SUBJECTS}
+
+# Grade ordering for the landing page (newer additions first won't matter — kelas 6
+# is the established section so we list it first).
+GRADE_ORDER = ["Kelas 6", "Kelas 2"]
+
+
+def subjects_by_grade():
+    """Group SUBJECTS by grade for the landing page. Returns an ordered list of
+    (grade, [subjects]) tuples in GRADE_ORDER, then any other grades alphabetically.
+    """
+    groups = {}
+    for s in SUBJECTS:
+        groups.setdefault(s.get("grade", "Lainnya"), []).append(s)
+    seen = set()
+    ordered = []
+    for g in GRADE_ORDER:
+        if g in groups:
+            ordered.append((g, groups[g]))
+            seen.add(g)
+    for g in sorted(groups):
+        if g not in seen:
+            ordered.append((g, groups[g]))
+    return ordered
+
+
+def display_name(subject):
+    """UI label for a subject (falls back to name)."""
+    return subject.get("display_name") or subject["name"]
 
 
 def load_pool(subject_key):
