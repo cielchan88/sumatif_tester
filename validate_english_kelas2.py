@@ -8,13 +8,18 @@ import sys
 from collections import Counter
 
 PATH = os.path.join(os.path.dirname(__file__), "questions", "english_kelas2.json")
-EXPECTED_LESSONS = {
-    "Lesson 7: At the Farm",
-    "Lesson 8: My Town",
-    "Lesson 9: Our Clothes",
-    "Lesson 10: Our Hobbies",
-    "Lesson 12: On Holiday",
+EXPECTED_UNITS = {
+    "Unit 5: Present Continuous",
+    "Unit 6: Polite Request",
+    "Unit 7: So do I / I don't",
+    "Unit 8: Where + Prepositions",
+    "Unit 9: have/has got",
+    "Unit 10: like / Do / Does",
+    "Unit 11: Object Pronouns / Would you like",
+    "Unit 12: want / WH-Question",
 }
+MIN_PER_UNIT = 8
+MIN_TOTAL = 64
 ALLOWED_DIFFICULTY = {"easy", "medium", "hard"}
 ALLOWED_LETTERS = {"A", "B", "C", "D"}
 
@@ -33,12 +38,12 @@ def main():
         errors.append("Missing top-level 'subject' or 'questions' key")
 
     # 2. Minimum count
-    if len(questions) < 60:
-        errors.append(f"Need ≥60 questions, found {len(questions)}")
+    if len(questions) < MIN_TOTAL:
+        errors.append(f"Need ≥{MIN_TOTAL} questions, found {len(questions)}")
 
     seen_ids = set()
     seen_questions = set()
-    lesson_counts = Counter()
+    unit_counts = Counter()
     difficulty_counts = Counter()
 
     for q in questions:
@@ -58,11 +63,11 @@ def main():
                 errors.append(f"Q{qid} missing field: {field}")
                 continue
 
-        # Lesson check
+        # Unit check
         topic = q.get("topic", "")
-        lesson_counts[topic] += 1
-        if topic not in EXPECTED_LESSONS:
-            errors.append(f"Q{qid} unknown lesson: {topic}")
+        unit_counts[topic] += 1
+        if topic not in EXPECTED_UNITS:
+            errors.append(f"Q{qid} unknown unit: {topic}")
 
         # Difficulty
         diff = q.get("difficulty")
@@ -99,13 +104,13 @@ def main():
             errors.append(f"Q{qid} duplicate of an earlier question")
         seen_questions.add(norm)
 
-    # 3. Per-lesson coverage
-    missing = EXPECTED_LESSONS - set(lesson_counts.keys())
+    # 3. Per-unit coverage
+    missing = EXPECTED_UNITS - set(unit_counts.keys())
     if missing:
-        errors.append(f"No questions for lesson(s): {missing}")
-    for lesson in EXPECTED_LESSONS:
-        if lesson_counts.get(lesson, 0) < 12:
-            errors.append(f"Lesson '{lesson}' has only {lesson_counts.get(lesson, 0)} questions (need ≥12)")
+        errors.append(f"No questions for unit(s): {missing}")
+    for unit in EXPECTED_UNITS:
+        if unit_counts.get(unit, 0) < MIN_PER_UNIT:
+            errors.append(f"Unit '{unit}' has only {unit_counts.get(unit, 0)} questions (need ≥{MIN_PER_UNIT})")
 
     # 4. Difficulty distribution reasonable (not all hard)
     if difficulty_counts.get("hard", 0) > len(questions) // 2:
@@ -113,7 +118,7 @@ def main():
 
     # Report
     print(f"Total questions: {len(questions)}")
-    print(f"Per lesson: {dict(lesson_counts)}")
+    print(f"Per unit: {dict(unit_counts)}")
     print(f"Per difficulty: {dict(difficulty_counts)}")
     print()
 

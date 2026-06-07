@@ -83,7 +83,20 @@ Setelah mengedit JSON, restart `python app.py` agar perubahan terbaca.
 
 | Mapel | Jumlah |
 |---|---|
-| Bahasa Inggris (Lesson 7, 8, 9, 10, 12) | 60 |
+| Bahasa Inggris (Grammar Units 5–12) | 72 |
+
+Cakupan Unit 5–12 mengikuti **grammar reference** buku siswa:
+
+| Unit | Fokus grammar |
+|---|---|
+| 5 | Present Continuous (am/is/are + verb-ing, isn't/aren't, What ... doing?) |
+| 6 | Polite Request (Can I have ..., please? — Here you are.) |
+| 7 | Agreement (So do I / I don't) |
+| 8 | Where + Prepositions of Place (behind / in front of / between, It's vs They're) |
+| 9 | have/has got (kepemilikan) + Present Continuous untuk pakaian (is/are wearing) |
+| 10 | like / love + Do/Does, doesn't, jawaban Yes/No |
+| 11 | Object Pronouns (me/you/him/her/it/us/them) + Would you like ...? |
+| 12 | want / wants + WH-Question (where / which) |
 
 Soal Kelas 2 disimpan sebagai mata pelajaran terpisah dengan nama internal
 "Bahasa Inggris Kelas 2" (label tampilan: "Bahasa Inggris" di bawah heading
